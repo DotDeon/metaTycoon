@@ -36,13 +36,13 @@ function Club() {
             <li className="text-white">Exclusive events and competitions</li>
           </ul>
         </div>
-        <div className="flex relative flex-col items-center justify-center mt-16 ">
+        <div className="flex relative flex-col items-center justify-center mt-16">
           <Image
             src={club}
             layout="fixed"
             objectFit="contain"
-            width={400}
-            height={400}
+            width={300}
+            height={300}
           />
         </div>
       </div>

@@ -9,7 +9,7 @@ module.exports = {
       fblue: "#111d46",
       fteal: "#3d707e",
       champ: "#ffcfa1",
-      black: "#fff9f2",
+      black: "#000000",
       white: "#e6e6e6",
     },
     extend: {

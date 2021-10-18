@@ -18,7 +18,7 @@ import animateScrollTo from "animated-scroll-to";
 
 export default function Home() {
   return (
-    <div className="bg-fblue">
+    <div className="bg-fblue flex flex-col">
       <Head>
         <title>RICK FXXK</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}

@@ -115,8 +115,3 @@ body {
   font-size: 14px;
   color: #e6e6e6;
 }
-@media (max-width: 460px) {
-  body {
-    display: none;
-  }
-}

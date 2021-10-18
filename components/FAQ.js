@@ -7,7 +7,7 @@ function FAQ() {
       <h1 className="text-white font-angkor text-4xl mt-16">FAQs</h1>
 
       {/* FAQ1 */}
-      <div className="flex relative flex-col px-64 py-10 ">
+      <div className="flex relative flex-col md:px-64 py-10 ">
         <div className="tab w-full overflow-hidden border-t">
           <input
             className="absolute opacity-0 "

@@ -3,11 +3,11 @@ function Milestones() {
     <div className="bg-fblue flex justify-center">
       <div className="container py-32">
         <div>
-          <h1 className="hedding-title text-fblue text-center font-angkor text-4xl">
+          <h1 className="hedding-title text-fblue text-center font-angkor text-4xl -mt-10">
             Milestone Celebrations
           </h1>
         </div>
-        <div className="row">
+        <div className="row mt-10">
           <div className="col-md-12 col-sm-12 col-xs-12">
             <section className="main-timeline-section">
               <div className="conference-center-line"></div>

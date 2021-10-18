@@ -19,7 +19,7 @@ function About() {
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
-          <div className="flex relative flex-row space-x-4 ">
+          <div className="flex relative flex-col md:flex-row md:space-x-4 ">
             <Image
               src={a1}
               layout="fixed"
