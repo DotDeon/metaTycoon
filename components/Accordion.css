@@ -73,7 +73,7 @@ white: "#e6e6e6", */
 /*Image Hover*/
 .image {
   position: relative;
-  width: 300px;
+  width: 200px;
 }
 
 .image__img {

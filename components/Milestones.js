@@ -3,24 +3,24 @@ function Milestones() {
     <div className="bg-fblue flex justify-center">
       <div className="container py-32">
         <div>
-          <h1 className="hedding-title text-fblue font-angkor text-4xl">
+          <h1 className="hedding-title text-fblue text-center font-angkor text-4xl">
             Milestone Celebrations
           </h1>
         </div>
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <section class="main-timeline-section">
-              <div class="conference-center-line"></div>
-              <div class="conference-timeline-content">
-                {/* <div class="hedding-title">MILESTONE CELEBRATIONS</div> */}
+        <div className="row">
+          <div className="col-md-12 col-sm-12 col-xs-12">
+            <section className="main-timeline-section">
+              <div className="conference-center-line"></div>
+              <div className="conference-timeline-content">
+                {/* <div className="hedding-title">MILESTONE CELEBRATIONS</div> */}
 
-                <div class="timeline-article content-right-container">
-                  <div class="content-date">
+                <div className="timeline-article content-right-container">
+                  <div className="content-date">
                     <span>10% SOLD</span>
                   </div>
-                  <div class="meta-date"></div>
-                  <div class="content-box">
-                    <div class="title-description">
+                  <div className="meta-date"></div>
+                  <div className="content-box">
+                    <div className="title-description">
                       <h1>Milestone 1</h1>
                       <br />
                       <p>
@@ -30,13 +30,13 @@ function Milestones() {
                     </div>
                   </div>
                 </div>
-                <div class="timeline-article content-left-container">
-                  <div class="content-date">
+                <div className="timeline-article content-left-container">
+                  <div className="content-date">
                     <span>25% Sold</span>
                   </div>
-                  <div class="meta-date"></div>
-                  <div class="content-box">
-                    <div class="title-description">
+                  <div className="meta-date"></div>
+                  <div className="content-box">
+                    <div className="title-description">
                       <h1>Milestone 2</h1>
                       <br />
                       <p>
@@ -46,26 +46,26 @@ function Milestones() {
                     </div>
                   </div>
                 </div>
-                <div class="timeline-article content-right-container">
-                  <div class="content-date">
+                <div className="timeline-article content-right-container">
+                  <div className="content-date">
                     <span>50% SOLD</span>
                   </div>
-                  <div class="meta-date"></div>
-                  <div class="content-box">
-                    <div class="title-description">
+                  <div className="meta-date"></div>
+                  <div className="content-box">
+                    <div className="title-description">
                       <h1>Milestone 3</h1>
                       <br />
                       <p>Donation of $25,000 to charity.</p>
                     </div>
                   </div>
                 </div>
-                <div class="timeline-article content-left-container">
-                  <div class="content-date">
+                <div className="timeline-article content-left-container">
+                  <div className="content-date">
                     <span>75% SOLD</span>
                   </div>
-                  <div class="meta-date"></div>
-                  <div class="content-box">
-                    <div class="title-description">
+                  <div className="meta-date"></div>
+                  <div className="content-box">
+                    <div className="title-description">
                       <h1>Milestone 4</h1>
                       <br />
                       <p>
@@ -76,13 +76,13 @@ function Milestones() {
                     </div>
                   </div>
                 </div>
-                <div class="timeline-article content-right-container">
-                  <div class="content-date">
+                <div className="timeline-article content-right-container">
+                  <div className="content-date">
                     <span>SOLD OUT</span>
                   </div>
-                  <div class="meta-date"></div>
-                  <div class="content-box">
-                    <div class="title-description">
+                  <div className="meta-date"></div>
+                  <div className="content-box">
+                    <div className="title-description">
                       <h1>Final Milestone</h1>
                       <br />
                       <p>WOOT! 'The Ultimate Roadmap' begins!</p>
@@ -90,7 +90,7 @@ function Milestones() {
                   </div>
                 </div>
               </div>
-              <div class="timeline-end"></div>
+              <div className="timeline-end"></div>
             </section>
           </div>
         </div>
