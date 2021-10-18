@@ -130,10 +130,10 @@ export default function Home() {
         <h1 className="text-6xl text-white font-angkor text-center">
           THE ULTIMATE ROADMAP
         </h1>
-        <h4 className="text2xl text-white font-angkor text-left ml-72 pt-5">
+        <h4 className="text2xl text-white font-angkor text-left ml-7 md:ml-72 pt-5">
           INTRODUCTION:
         </h4>
-        <ul className="list-decimal text-left px-80 pt-2">
+        <ul className="list-decimal text-left px-6 md:px-80 pt-2">
           <li className="text-white">
             Rich Fxxk features 9,999 digital art collectibles. The 9,999
             collection features different streetwear clothings, hairstyles in
@@ -166,10 +166,10 @@ export default function Home() {
           <li className="text-white">Random airdrops</li>
           <li className="text-white">Exclusive events and competitions</li>
         </ul>
-        <h4 className="text2xl text-white font-angkor text-left px-72 pt-5">
+        <h4 className="text2xl text-white font-angkor text-left mx-5 md:px-72 pt-5">
           RICH FXXK TEAM INTRODUCTION:
         </h4>
-        <div className="flex flex-row px-80 mt-4 items-center space-x-10">
+        <div className="flex flex-col md:flex-row px-5 md:px-80 mt-4 items-center md:space-x-10">
           <Image
             src={jis}
             layout="fixed"
@@ -177,7 +177,7 @@ export default function Home() {
             width={300}
             height={300}
           />
-          <p className="w-3/5 receipe text-4xl text-white">
+          <p className="w-3/5 text-lg md:text-4xl text-white">
             Our founder, known as ‘Jis’, (currently) manages a group of
             realtors, and had groomed many realtors to become millionaires
             through brokering real estate. ‘Jis’ is experienced in researching,
@@ -187,8 +187,8 @@ export default function Home() {
             real estate and NFT investor.
           </p>
         </div>
-        <div className="flex flex-row px-80 mt-4 items-center space-x-10">
-          <p className="w-2/3 text-4xl text-white">
+        <div className="flex flex-col-reverse md:flex-row md:px-80 mt-4 items-center md:space-x-10">
+          <p className="w-2/3 text-lg md:text-4xl text-white">
             Our co-founder, known as ‘Maxim’, (currently) manages a group of
             realtors just like ‘Jis’, and is a highly successful realtor, known
             for making consistent 6-figure income monthly. ‘Maxim’ is the best
@@ -204,10 +204,10 @@ export default function Home() {
             height={300}
           />
         </div>
-        <h4 className="text2xl text-white font-angkor text-left px-80 pt-5">
+        <h4 className="text2xl text-white font-angkor text-left px-5 md:px-80 pt-5">
           MESSAGE FROM FOUNDER:
         </h4>
-        <div className="px-80 ">
+        <div className="md:px-80 px-5">
           <p className="text-left pt-3 text-lg text-white">
             Hey Rich Fxxk, I am really fascinated by how the whole NFT community
             works and how different teams put together their creative ideas, and
