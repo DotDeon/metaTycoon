@@ -9,7 +9,7 @@ function Club() {
           Rich Fxxk Club
         </h1>
       </div>
-      <div className="flex flex-col md:flex-row justify-center pb-12">
+      <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-12">
         <div className="flex flex-col md:text-left text-center md:w-1/3">
           <p className="text-champ   text-lg mt-12 font-bold">
             Rich Fxxk Club Eligibility:
