@@ -7,7 +7,7 @@ function Footer() {
     <div className="bg-fteal flex justify-center">
       <div className="flex flex-col py-12">
         <div>
-          <p className="text-white font-bold text-lg mt-4">
+          <p className="text-white font-bold text-lg text-center mt-4">
             Be a Rich Fxxk Today!
           </p>
         </div>
@@ -17,7 +17,7 @@ function Footer() {
         <p className="text-xs text-white text-center">
           0x0F4B28D46CAB209bC5fa987A92A2
         </p>
-        <div className="flex relative flex-row space-x-4 mt-3">
+        <div className="flex relative flex-row justify-between mt-3">
           <a
             target="_blank"
             href="https://twitter.com/RichFxxk"

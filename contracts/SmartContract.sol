@@ -11,15 +11,17 @@ contract SmartContract is ERC721Enumerable, Ownable {
   string public baseURI;
   string public baseExtension = ".json";
   string public notRevealedUri;
-  uint256 public cost = 0.69 ether;
+  uint256 public cost = 0.069 ether;
   uint256 public maxSupply = 9999;
-  uint256 public maxMintAmount = 20;
-  uint256 public nftPerAddressLimit = 1;
+  uint256 public maxMintAmount = 10;
+  uint256 public nftPerAddressLimit = 10;
+  uint256 public nftPerAddressLimitPreMint = 3;
   bool public paused = false;
   bool public revealed = false;
   bool public onlyWhitelisted = true;
   address[] public whitelistedAddresses;
   address[] public vipAddresses;
+  uint256[] public vipMaxMinted;
   mapping(address => uint256) public addressMintedBalance;
 
 
@@ -54,21 +56,23 @@ contract SmartContract is ERC721Enumerable, Ownable {
         }
         if(isVIP(msg.sender))
         {
-
-
+          uint256 vipMintAmount = vipMintAmount(msg.sender);
+          uint256 ownerMintedCount = addressMintedBalance[msg.sender];
+          require(ownerMintedCount + _mintAmount <=  vipMintAmount, "max NFT per address exceeded");
         }
         else
         {
           require(msg.value >= cost * _mintAmount, "insufficient funds");
-       
-       
         }
+
     }
     
+
     for (uint256 i = 1; i <= _mintAmount; i++) {
         addressMintedBalance[msg.sender]++;
       _safeMint(msg.sender, supply + i);
     }
+    
   }
   
   function isWhitelisted(address _user) public view returns (bool) {
@@ -94,6 +98,15 @@ contract SmartContract is ERC721Enumerable, Ownable {
     return false;
   }
 
+  function vipMintAmount(address _user) public view returns(uint256){
+    for (uint i = 0; i < vipAddresses.length; i++) {
+      if (vipAddresses[i] == _user) { 
+          return vipMaxMinted[i];
+      }
+    }
+    return 0;
+  }
+                 
   function walletOfOwner(address _owner)
     public
     view
@@ -174,6 +187,11 @@ contract SmartContract is ERC721Enumerable, Ownable {
 function vipUsers(address[] calldata _users) public onlyOwner {
     delete vipAddresses;
     vipAddresses = _users;
+  }
+  
+  function vipUsersMaxMint(uint256[] calldata _numberofmints) public onlyOwner {
+    delete vipMaxMinted;
+    vipMaxMinted = _numberofmints;
   }
  
   function withdraw() public payable onlyOwner {

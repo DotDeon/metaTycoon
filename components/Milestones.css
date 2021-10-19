@@ -43,7 +43,7 @@ body {
 .timeline-article .content-date {
   position: absolute;
   top: 33%;
-  left: 37%;
+  /* left: 37%; */
   font-size: 18px;
   color: #e6e6e6;
   transform: translateY(50%);

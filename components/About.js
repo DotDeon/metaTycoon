@@ -19,14 +19,17 @@ function About() {
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
-          <div className="flex relative flex-col md:flex-row md:space-x-4 ">
-            <Image
-              src={a1}
-              layout="fixed"
-              objectFit="contain"
-              width={200}
-              height={200}
-            />
+          <div className="flex relative flex-row md:space-x-4 ">
+            <div className="hidden md:flex">
+              <Image
+                src={a1}
+                layout="fixed"
+                objectFit="contain"
+                width={200}
+                height={200}
+              />
+            </div>
+
             <Image
               src={a2}
               layout="fixed"
@@ -34,20 +37,24 @@ function About() {
               width={200}
               height={200}
             />
-            <Image
-              src={a3}
-              layout="fixed"
-              objectFit="contain"
-              width={200}
-              height={200}
-            />
-            <Image
-              src={a4}
-              layout="fixed"
-              objectFit="contain"
-              width={200}
-              height={200}
-            />
+            <div className="hidden md:flex">
+              <Image
+                src={a3}
+                layout="fixed"
+                objectFit="contain"
+                width={200}
+                height={200}
+              />
+            </div>
+            <div className="hidden md:flex">
+              <Image
+                src={a4}
+                layout="fixed"
+                objectFit="contain"
+                width={200}
+                height={200}
+              />
+            </div>
           </div>
           {/* <div className="flex relative flex-row space-x-4 mt-4 justify-evenly">
           <Image

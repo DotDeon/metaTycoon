@@ -14,7 +14,7 @@ function Teams() {
         <div>
           <h1 className="text-center text-white font-angkor text-4xl">Team</h1>
           <p className="text-center text-white font-bold text-lg mt-4">
-            The Ultimate Roadmap is launched when the project is 100% sold
+            Mouseover to read team’s description
           </p>
         </div>
         <div className=" flex justify-center">

@@ -10,7 +10,7 @@ function Club() {
         </h1>
       </div>
       <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-12">
-        <div className="flex flex-col md:text-left text-center md:w-1/3">
+        <div className="flex flex-col text-left px-12 md:w-1/3">
           <p className="text-champ   text-lg mt-12 font-bold">
             Rich Fxxk Club Eligibility:
           </p>
@@ -36,7 +36,7 @@ function Club() {
             <li className="text-white">Exclusive events and competitions</li>
           </ul>
         </div>
-        <div className="flex relative flex-col items-center justify-center mt-16">
+        <div className="flex relative flex-col items-center justify-center mt-6 md:mt-16">
           <Image
             src={club}
             layout="fixed"

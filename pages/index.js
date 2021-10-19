@@ -47,7 +47,7 @@ export default function Home() {
             />
           </div>
           <p className=" relative ml-2 mt-2 font-angkor items-center text-2xl text-white">
-            RICH FXXK
+            RICH FXXK NFT
           </p>
         </div>
 
@@ -149,17 +149,17 @@ export default function Home() {
       <div className="about">
         <About />
       </div>
-      <div className="milestones">
+      <div className="milestones pt-12">
         <Milestones />
       </div>
-      <div className="club">
+      <div className="club pt-12">
         <Club />
       </div>
-      <div className="roadmap">
+      <div className="roadmap mt-8">
         <Roadmap />
       </div>
 
-      <div className="teams">
+      <div className="team mt-12">
         <Teams />
       </div>
       <div className="faq">
