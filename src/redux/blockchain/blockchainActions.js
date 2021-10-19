@@ -48,7 +48,7 @@ export const connect = () => {
           const SmartContractObj = new web3.eth.Contract(
             SmartContract.abi,
             //NetworkData.address
-            "0x66cE84964640350fb596d19e1dED85f21bf3B714"
+            "0xb3472BBBf9c3099a67e5BA45b6e00f28e0eB0097"
           );
           dispatch(
             connectSuccess({
@@ -66,7 +66,7 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Change network to Polygon."));
+          dispatch(connectFailed("Change network to Etherium."));
         }
       } catch (err) {
         dispatch(connectFailed("Something went wrong."));

@@ -11,14 +11,13 @@ contract SmartContract is ERC721Enumerable, Ownable {
   string public baseURI;
   string public baseExtension = ".json";
   string public notRevealedUri;
-  uint256 public cost = 0.069 ether;
+  uint256 public cost = 0.69 ether;
   uint256 public maxSupply = 9999;
+  uint256 public maxMintAmount = 20;
   uint256 public nftPerAddressLimit = 1;
   bool public paused = false;
   bool public revealed = false;
   bool public onlyWhitelisted = true;
-  bool public onlyVIP = true;
-  bool public _canMint = false;
   address[] public whitelistedAddresses;
   address[] public vipAddresses;
   mapping(address => uint256) public addressMintedBalance;
@@ -44,82 +43,32 @@ contract SmartContract is ERC721Enumerable, Ownable {
     require(!paused, "the contract is paused");
     uint256 supply = totalSupply();
     require(_mintAmount > 0, "need to mint at least 1 NFT");
-  //  require(_mintAmount <= maxMintAmount, "max mint amount per session exceeded");
+    require(_mintAmount <= maxMintAmount, "max mint amount per session exceeded");
     require(supply + _mintAmount <= maxSupply, "max NFT limit exceeded");
 
     if (msg.sender != owner()) {
         if(onlyWhitelisted == true) {
-             _canMint = false;
-            if(isWhitelisted(msg.sender) || isVIP(msg.sender))
-            {
-                
-                _canMint = true;
-                if(isVIP(msg.sender))
-                {
-                    cost = 0.00 ether;
-                }
-                
-                if(isWhitelisted(msg.sender))
-                {
-                    cost = 0.69 ether;
-                }
-                if((supply + 1) == 600)
-                {
-                     onlyWhitelisted = false;
-                     paused = true;
-                }
-                
-                
-            }
-            require(_canMint, "user is not whitelisted");
+            require(isWhitelisted(msg.sender), "user is not whitelisted");
             uint256 ownerMintedCount = addressMintedBalance[msg.sender];
             require(ownerMintedCount + _mintAmount <= nftPerAddressLimit, "max NFT per address exceeded");
-            require(msg.value >= cost * _mintAmount, "insufficient funds");
-            for (uint256 i = 1; i <= _mintAmount; i++) {
-            addressMintedBalance[msg.sender]++;
-            _safeMint(msg.sender, supply + i);
-    }
+        }
+        if(isVIP(msg.sender))
+        {
+
+
         }
         else
         {
-
-             require(msg.value >= cost * _mintAmount, "insufficient funds");
-             for (uint256 i = 1; i <= _mintAmount; i++) {
-             addressMintedBalance[msg.sender]++;
-             _safeMint(msg.sender, supply + i); }
+          require(msg.value >= cost * _mintAmount, "insufficient funds");
+       
+       
         }
     }
-    else
-    {
-        require(msg.value >= cost * _mintAmount, "insufficient funds");
-        for (uint256 i = 1; i <= _mintAmount; i++) {
-        addressMintedBalance[msg.sender]++;
-        _safeMint(msg.sender, supply + i);
-    }
-        
-    }
     
-    // for (uint256 i = 1; i <= _mintAmount; i++) {
-    //     addressMintedBalance[msg.sender]++;
-    //   _safeMint(msg.sender, supply + i);
-    // }
-  }
-  
-  function getCost() public view returns(string memory)
-  {
-              if((supply + 1) < 3000)
-                {
-                    cost = 0.79 ether;
-                }
-                else if((supply + 1) < 6000 )
-                {
-                    cost = 0.89 ether;
-                }
-                else if((supply + 1) < 6000)
-                {
-                    cost = 0.90 ether;
-                }
-      return cost.toString();
+    for (uint256 i = 1; i <= _mintAmount; i++) {
+        addressMintedBalance[msg.sender]++;
+      _safeMint(msg.sender, supply + i);
+    }
   }
   
   function isWhitelisted(address _user) public view returns (bool) {
@@ -128,9 +77,14 @@ contract SmartContract is ERC721Enumerable, Ownable {
           return true;
       }
     }
+    for (uint i = 0; i < vipAddresses.length; i++) {
+      if (vipAddresses[i] == _user) {
+          return true;
+      }
+    }
     return false;
   }
-  
+
     function isVIP(address _user) public view returns (bool) {
     for (uint i = 0; i < vipAddresses.length; i++) {
       if (vipAddresses[i] == _user) {
@@ -188,9 +142,9 @@ contract SmartContract is ERC721Enumerable, Ownable {
     cost = _newCost;
   }
 
-//   function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner() {
-//     maxMintAmount = _newmaxMintAmount;
-//   }
+  function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner() {
+    maxMintAmount = _newmaxMintAmount;
+  }
 
   function setBaseURI(string memory _newBaseURI) public onlyOwner {
     baseURI = _newBaseURI;
@@ -216,12 +170,12 @@ contract SmartContract is ERC721Enumerable, Ownable {
     delete whitelistedAddresses;
     whitelistedAddresses = _users;
   }
- 
-   function vipUsers(address[] calldata _users) public onlyOwner {
-    delete whitelistedAddresses;
+  
+function vipUsers(address[] calldata _users) public onlyOwner {
+    delete vipAddresses;
     vipAddresses = _users;
   }
-  
+ 
   function withdraw() public payable onlyOwner {
     (bool success, ) = payable(msg.sender).call{value: address(this).balance}("");
     require(success);

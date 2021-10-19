@@ -11,90 +11,109 @@ function Banner() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
+  const [mintMSG, setMintMsg] = useState("Mint");
+  //console.log("iswhitelisted " + isWhitelisted);
 
   const claimNFT = (_amount) => {
-    // setClaimingNFT(true);
-    //console.log(blockchain.smartContract.methods.cost.value);
-    var Cost;
-
+    var isWhitelisted;
     blockchain.smartContract.methods
-      .getCost()
+      .isWhitelisted(blockchain.account)
       .call()
-      .then(function (cost) {
-        Cost = cost;
-        console.log(Cost);
-        var canMint = false;
-
-        blockchain.smartContract.methods
-          .isVIP(blockchain.account)
-          .call()
-          .then(function (whiteList) {
-            if (whiteList) {
-              canMint = true;
-              Cost = "00000000";
-              if (canMint) {
-                console.log("Can Mint");
-                console.log(Cost);
+      .then(function (whitelisted) {
+        var isWhitelisted = whitelisted;
+        console.log("Check if User is whitelisted");
+        if (isWhitelisted === true) {
+          console.log("User is whitelisted");
+          blockchain.smartContract.methods
+            .isVIP(blockchain.account)
+            .call()
+            .then(function (VIP) {
+              if (VIP === true) {
+                var value = "0.000";
+                setMintMsg("Busy");
+                console.log("User is VIP");
+                console.log(value);
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
                     from: blockchain.account,
+
                     value: blockchain.web3.utils.toWei(
-                      (Cost * 1).toString(),
-                      "wei"
+                      (value * nftQTY).toString(),
+                      "ether"
                     ),
                   })
                   .once("error", (err) => {
-                    //  setClaimingNFT(false);
+                    setMintMsg("Mint");
                     console.log(err);
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
                     console.log("Success");
-                    //  setFeedback("Success");
+                    setMintMsg("Mint");
+                  });
+              } else {
+                var value = "0.069";
+                setMintMsg("Busy");
+                console.log("User is whitelisted not VIP");
+                console.log(value);
+                blockchain.smartContract.methods
+                  .mint(nftQTY)
+                  .send({
+                    from: blockchain.account,
+
+                    value: blockchain.web3.utils.toWei(
+                      (value * nftQTY).toString(),
+                      "ether"
+                    ),
+                  })
+                  .once("error", (err) => {
+                    setMintMsg("Mint");
+                    console.log(err);
+                  })
+                  .then((receipt) => {
+                    setMintMsg("Mint");
+                    console.log("Success");
+                    setFeedback("Success");
                   });
               }
-            } else {
-              console.log("False");
-            }
+            });
+        } else {
+          blockchain.smartContract.methods
+            .onlyWhitelisted()
+            .call()
+            .then(function (onlyWhitelist) {
+              if (onlyWhitelist === true) {
+                setMintMsg("Can't Mint yet");
+              } else {
+                console.log("everyone can mint");
+                var value = "0.069";
+                setMintMsg("Busy");
+                console.log(value);
+                blockchain.smartContract.methods
+                  .mint(nftQTY)
+                  .send({
+                    from: blockchain.account,
 
-            if (!canMint) {
-              blockchain.smartContract.methods
-                .isWhitelisted(blockchain.account)
-                .call()
-                .then(function (whiteList) {
-                  if (whiteList) {
-                    console.log("Whitelisted");
-                    canMint = true;
-                    if (canMint) {
-                      console.log("Can Mint");
-                      console.log(Cost);
-                      blockchain.smartContract.methods
-                        .mint(nftQTY)
-                        .send({
-                          from: blockchain.account,
-                          value: blockchain.web3.utils.toWei(
-                            (Cost * 1).toString(),
-                            "wei"
-                          ),
-                        })
-                        .once("error", (err) => {
-                          //  setClaimingNFT(false);
-                          console.log(err);
-                        })
-                        .then((receipt) => {
-                          //   setClaimingNFT(false);
-                          console.log("Success");
-                          //  setFeedback("Success");
-                        });
-                    }
-                  } else {
-                    console.log("Not Whitelisted");
-                    canMint = false;
-                  }
-                });
-            }
-          });
+                    value: blockchain.web3.utils.toWei(
+                      (value * nftQTY).toString(),
+                      "ether"
+                    ),
+                  })
+                  .once("error", (err) => {
+                    setMintMsg("Mint");
+
+                    console.log(err);
+                  })
+                  .then((receipt) => {
+                    //   setClaimingNFT(false);
+                    setMintMsg("Mint");
+                    console.log("Success");
+                    //setFeedback("Success");
+                  });
+              }
+            });
+        }
       });
   };
 
@@ -103,6 +122,7 @@ function Banner() {
       dispatch(fetchData(blockchain.account));
     }
   }, [blockchain.smartContract, dispatch]);
+
   return (
     <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
       <Image src={banner} layout="fill" objectFit="cover" />
@@ -127,10 +147,10 @@ function Banner() {
             className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
             onClick={(e) => {
               e.preventDefault();
-              claimNFT(1);
+              claimNFT(nftQTY);
             }}
           >
-            Mint
+            <p>{mintMSG}</p>
           </button>
         )}
       </div>
