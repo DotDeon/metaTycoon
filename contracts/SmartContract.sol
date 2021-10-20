@@ -13,9 +13,8 @@ contract SmartContract is ERC721Enumerable, Ownable {
   string public notRevealedUri;
   uint256 public cost = 0.069 ether;
   uint256 public maxSupply = 9999;
-  uint256 public maxMintAmount = 10;
-  uint256 public nftPerAddressLimit = 10;
-  uint256 public nftPerAddressLimitPreMint = 3;
+  uint256 public maxMintAmount = 20;
+  uint256 public nftPerAddressLimit = 20;
   bool public paused = false;
   bool public revealed = false;
   bool public onlyWhitelisted = true;
@@ -73,6 +72,13 @@ contract SmartContract is ERC721Enumerable, Ownable {
       _safeMint(msg.sender, supply + i);
     }
     
+  }
+  
+  function qtyLeftForUser(address _user) public view returns(uint256){
+          uint256 supply = totalSupply();    
+          uint256 ownerMintedCount = addressMintedBalance[msg.sender];
+          uint256 allowed = (nftPerAddressLimit - ownerMintedCount);
+          return allowed;
   }
   
   function isWhitelisted(address _user) public view returns (bool) {
@@ -133,7 +139,7 @@ contract SmartContract is ERC721Enumerable, Ownable {
     );
     
     if(revealed == false) {
-        return notRevealedUri;
+        return notRevealedUri; 
     }
 
     string memory currentBaseURI = _baseURI();
@@ -184,7 +190,7 @@ contract SmartContract is ERC721Enumerable, Ownable {
     whitelistedAddresses = _users;
   }
   
-function vipUsers(address[] calldata _users) public onlyOwner {
+  function vipUsers(address[] calldata _users) public onlyOwner {
     delete vipAddresses;
     vipAddresses = _users;
   }

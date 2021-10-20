@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="bg-fblue flex flex-col">
       <Head>
-        <title>RICK FXXK</title>
+        <title>RICH FXXK NFT</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
@@ -47,10 +47,9 @@ export default function Home() {
             />
           </div>
           <p className=" relative ml-2 mt-2 font-angkor items-center text-2xl text-white">
-            RICH FXXK NFT
+            RICH FXXK
           </p>
         </div>
-
         {/* Middle */}
         {/* <div className="flex items-center  py-2"> */}
         <div className="flex items-center space-x-4 justify-end text-white"></div>

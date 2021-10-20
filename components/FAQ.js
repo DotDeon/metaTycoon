@@ -1,5 +1,6 @@
 import Image from "next/image";
-import about1 from "../assets/about1.jpg";
+
+
 
 function FAQ() {
   return (
@@ -101,7 +102,16 @@ function FAQ() {
               gurus and we strive to build a community sharing our expertise and
               rewarding holders for their involvement. Our whitepaper is pretty
               comprehensive and elaborates on what we are really about so please
-              check out our whitepaper <a href="">here</a>!
+              check out our whitepaper{" "}
+              <a
+                className="cursor-pointer"
+                onClick={() =>
+                  window.open("http://whitepaper.richfxxk.com/", "_blank")
+                }
+              >
+                here
+              </a>
+              !
             </p>
           </div>
         </div>

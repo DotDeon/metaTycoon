@@ -20,15 +20,13 @@ function About() {
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
           <div className="flex relative flex-row md:space-x-4 ">
-            <div className="hidden md:flex">
-              <Image
-                src={a1}
-                layout="fixed"
-                objectFit="contain"
-                width={200}
-                height={200}
-              />
-            </div>
+            <Image
+              src={a1}
+              layout="fixed"
+              objectFit="contain"
+              width={200}
+              height={200}
+            />
 
             <Image
               src={a2}
@@ -37,15 +35,15 @@ function About() {
               width={200}
               height={200}
             />
-            <div className="hidden md:flex">
-              <Image
-                src={a3}
-                layout="fixed"
-                objectFit="contain"
-                width={200}
-                height={200}
-              />
-            </div>
+
+            <Image
+              src={a3}
+              layout="fixed"
+              objectFit="contain"
+              width={200}
+              height={200}
+            />
+
             <div className="hidden md:flex">
               <Image
                 src={a4}

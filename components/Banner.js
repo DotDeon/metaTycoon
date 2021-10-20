@@ -13,6 +13,7 @@ function Banner() {
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
   const [mintMSG, setMintMsg] = useState("Mint");
+  const [qtyLeft, setQtyLeft] = useState(10);
   //console.log("iswhitelisted " + isWhitelisted);
 
   const claimNFT = (_amount) => {
@@ -121,13 +122,20 @@ function Banner() {
   useEffect(() => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
+      blockchain.smartContract.methods
+        .qtyLeftForUser(blockchain.account)
+        .call()
+        .then(function (mintNUM) {
+          setQtyLeft(mintNUM);
+          console.log(mintNUM.toString());
+        });
     }
   }, [blockchain.smartContract, dispatch]);
 
   return (
-    <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
+    <div className="relative h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
       <Image src={banner} layout="fill" objectFit="cover" />
-      <div className="absolute top-1/2 w-full text-center">
+      <div className="absolute top-1/4 md:top-1/2 w-full text-center">
         <Countdown className="" />
 
         <p className="text-sm sm:text-2xl font-bold text-white mt-10">
@@ -150,7 +158,7 @@ function Banner() {
             }}
             axis="x"
             className="mt-2"
-            xmax="20"
+            xmax={qtyLeft}
             x={nftQTY}
             onChange={({ x }) => {
               if (mintMSG.substr(0, 4) == "Mint") {
@@ -159,7 +167,7 @@ function Banner() {
               }
             }}
           />
-          <p className="ml-4 font-bold text-white">20</p>
+          <p className="ml-4 font-bold text-white">{qtyLeft}</p>
         </div>
         {blockchain.account === "" || blockchain.smartContract === null ? (
           <button

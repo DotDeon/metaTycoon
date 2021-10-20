@@ -8,7 +8,7 @@ const Countdown = () => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const target = new Date("2021-11-24T00:00:00.000+05:00");
+    const target = new Date("2021-10-31T00:00:00.000+05:00");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -37,7 +37,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="-mt-20">
+    <div className="md:-mt-32 -mt-20">
       {launchTime ? (
         <> </>
       ) : (
