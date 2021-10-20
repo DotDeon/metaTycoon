@@ -6,6 +6,7 @@ import { useRouter } from "next/dist/client/router";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../src/redux/blockchain/blockchainActions";
 import { fetchData } from "../src/redux/data/dataActions";
+import Slider from "react-input-slider";
 
 function Banner() {
   const dispatch = useDispatch();
@@ -129,9 +130,37 @@ function Banner() {
       <div className="absolute top-1/2 w-full text-center">
         <Countdown className="" />
 
-        <p className="text-sm sm:text-lg font-bold text-white mt-10">
+        <p className="text-sm sm:text-2xl font-bold text-white mt-10">
           Countdown to official Rich Fxxk minting day!
         </p>
+
+        <p className="text-center text-base md:text-lg text-white mt-4">
+          How many RICH FXXKs do you want to mint
+        </p>
+        <div className="flex flex-row mt-4 justify-center">
+          <p className="mr-4 font-bold text-white">1</p>
+          <Slider
+            styles={{
+              track: {
+                backgroundColor: "#1d4c74",
+              },
+              active: {
+                backgroundColor: "#3d707e",
+              },
+            }}
+            axis="x"
+            className="mt-2"
+            xmax="20"
+            x={nftQTY}
+            onChange={({ x }) => {
+              if (mintMSG.substr(0, 4) == "Mint") {
+                setNFTQty(x);
+                setMintMsg("Mint" + " " + x);
+              }
+            }}
+          />
+          <p className="ml-4 font-bold text-white">20</p>
+        </div>
         {blockchain.account === "" || blockchain.smartContract === null ? (
           <button
             className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
