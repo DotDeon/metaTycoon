@@ -150,7 +150,7 @@ function Banner() {
             }}
             axis="x"
             className="mt-2"
-            xmax="10"
+            xmax="20"
             x={nftQTY}
             onChange={({ x }) => {
               if (mintMSG.substr(0, 4) == "Mint") {
