@@ -55,9 +55,9 @@ contract SmartContract is ERC721Enumerable, Ownable {
         }
         if(isVIP(msg.sender))
         {
-          uint256 vipMintAmount = vipMintAmount(msg.sender);
+          uint256 vipMintAmount1 = vipMintAmount(msg.sender);
           uint256 ownerMintedCount = addressMintedBalance[msg.sender];
-          require(ownerMintedCount + _mintAmount <=  vipMintAmount, "max NFT per address exceeded");
+          require(ownerMintedCount + _mintAmount <=  vipMintAmount1, "max NFT per address exceeded");
         }
         else
         {
@@ -75,8 +75,8 @@ contract SmartContract is ERC721Enumerable, Ownable {
   }
   
   function qtyLeftForUser(address _user) public view returns(uint256){
-          uint256 supply = totalSupply();    
-          uint256 ownerMintedCount = addressMintedBalance[msg.sender];
+         // uint256 supply = totalSupply();    
+          uint256 ownerMintedCount = addressMintedBalance[_user];
           uint256 allowed = (nftPerAddressLimit - ownerMintedCount);
           return allowed;
   }
