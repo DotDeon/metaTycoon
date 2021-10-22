@@ -74,6 +74,14 @@ contract SmartContract is ERC721Enumerable, Ownable {
     
   }
   
+    function qtyLeftForVIP(address _user) public view returns(uint256){
+         // uint256 supply = totalSupply();    
+          uint256 ownerMintedCount = addressMintedBalance[_user];
+          uint256 vipMintAmount1 = vipMintAmount(_user);
+          uint256 allowed = (vipMintAmount1  - ownerMintedCount);
+          return allowed;
+  }
+  
   function qtyLeftForUser(address _user) public view returns(uint256){
          // uint256 supply = totalSupply();    
           uint256 ownerMintedCount = addressMintedBalance[_user];

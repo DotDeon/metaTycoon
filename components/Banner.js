@@ -13,7 +13,8 @@ function Banner() {
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
   const [mintMSG, setMintMsg] = useState("Mint");
-  const [qtyLeft, setQtyLeft] = useState(10);
+  const [qtyLeft, setQtyLeft] = useState(20);
+  const [minMint, setMinMint] = useState(1);
   //console.log("iswhitelisted " + isWhitelisted);
 
   const claimNFT = (_amount) => {
@@ -122,12 +123,54 @@ function Banner() {
   useEffect(() => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
+
       blockchain.smartContract.methods
-        .qtyLeftForUser(blockchain.account)
+        .onlyWhitelisted()
         .call()
-        .then(function (mintNUM) {
-          setQtyLeft(mintNUM);
-          console.log(mintNUM.toString());
+        .then(function (onlyWhitelist) {
+          if (onlyWhitelist === true) {
+            var isWhitelisted;
+            blockchain.smartContract.methods
+              .isWhitelisted(blockchain.account)
+              .call()
+              .then(function (whitelisted) {
+                var isWhitelisted = whitelisted;
+                console.log("Check if User is whitelisted");
+                if (isWhitelisted === true) {
+                  console.log("User is whitelisted");
+                  blockchain.smartContract.methods
+                    .isVIP(blockchain.account)
+                    .call()
+                    .then(function (VIP) {
+                      if (VIP === true) {
+                        blockchain.smartContract.methods
+                          .qtyLeftForVIP(blockchain.account)
+                          .call()
+                          .then(function (mintNUM) {
+                            setQtyLeft(mintNUM);
+                            console.log(mintNUM.toString());
+                          });
+                      } else {
+                        blockchain.smartContract.methods
+                          .qtyLeftForUser(blockchain.account)
+                          .call()
+                          .then(function (mintNUM) {
+                            setQtyLeft(mintNUM);
+                            console.log(mintNUM.toString());
+                          });
+                      }
+                    });
+                }
+              });
+          } else {
+            blockchain.smartContract.methods
+              .qtyLeftForUser(blockchain.account)
+              .call()
+              .then(function (mintNUM) {
+                setQtyLeft(mintNUM);
+                console.log(mintNUM.toString());
+              });
+          }
         });
     }
   }, [blockchain.smartContract, dispatch]);
@@ -135,8 +178,8 @@ function Banner() {
   return (
     <div className="relative h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
       <Image src={banner} layout="fill" objectFit="cover" />
-      <div className="absolute top-1/4 md:top-1/2 w-full text-center">
-        <Countdown className="" />
+      <div className="ml-2 absolute top-1/4 md:top-1/2 w-full text-center">
+        <Countdown className="pl-4" />
 
         <p className="text-sm sm:text-2xl font-bold text-white mt-10">
           Countdown to official Rich Fxxk minting day!
@@ -159,6 +202,7 @@ function Banner() {
             axis="x"
             className="mt-2"
             xmax={qtyLeft}
+            xmin={minMint}
             x={nftQTY}
             onChange={({ x }) => {
               if (mintMSG.substr(0, 4) == "Mint") {
