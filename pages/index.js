@@ -14,7 +14,6 @@ import logo from "../assets/logo.png";
 import discord from "../assets/discord.svg";
 import opensea from "../assets//opensea.png";
 import twitter from "../assets/twitter.svg";
-import favicon from "../assets/favicon.ico";
 import animateScrollTo from "animated-scroll-to";
 
 export default function Home() {
