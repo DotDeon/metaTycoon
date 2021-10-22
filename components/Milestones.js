@@ -15,7 +15,7 @@ function Milestones() {
                 {/* <div className="hedding-title">MILESTONE CELEBRATIONS</div> */}
 
                 <div className="timeline-article content-right-container">
-                  <div className="content-date ml-6 pl-10 md:pl-64 md:ml-96">
+                  <div className="content-date ml-6 pl-10  lg:pl-64 lg:ml-16">
                     <span>10% SOLD</span>
                   </div>
                   <div className="meta-date"></div>
@@ -47,7 +47,7 @@ function Milestones() {
                   </div>
                 </div>
                 <div className="timeline-article content-right-container">
-                  <div className="content-date ml-6 pl-10 md:pl-64 md:ml-96">
+                  <div className="content-date ml-6 pl-10  lg:pl-64 lg:ml-16">
                     <span>50% SOLD</span>
                   </div>
                   <div className="meta-date"></div>
@@ -77,7 +77,7 @@ function Milestones() {
                   </div>
                 </div>
                 <div className="timeline-article content-right-container">
-                  <div className="content-date ml-6 pl-10 md:pl-64 md:ml-96">
+                  <div className="content-date ml-6 pl-10  lg:pl-64 lg:ml-16">
                     <span>SOLD OUT</span>
                   </div>
                   <div className="meta-date"></div>
