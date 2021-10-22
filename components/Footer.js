@@ -15,7 +15,7 @@ function Footer() {
           Smart Contract Address
         </p>
         <p className="text-xs text-white text-center">
-          0x0F4B28D46CAB209bC5fa987A92A2
+          0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F
         </p>
         <div className="flex relative flex-row justify-between mt-3">
           <a

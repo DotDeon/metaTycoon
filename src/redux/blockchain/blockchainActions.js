@@ -49,7 +49,7 @@ export const connect = () => {
             SmartContract.abi,
             //NetworkData.address
             // "0x28c5b83ab49ae3d65Ce02D6aDF75c426D317b961"
-            "0xde5C29a951C85Abb9A6B2AB8999212498c0c1c69"
+            "0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F"
           );
           dispatch(
             connectSuccess({
