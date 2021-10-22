@@ -22,7 +22,7 @@ export default function Home() {
     <div className="bg-fblue flex flex-col">
       <Head>
         <title>RICH FXXK NFT</title>
-        <link rel="icon" href="../assets/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
