@@ -182,11 +182,11 @@ function Banner() {
         <Countdown className="pl-4" />
 
         <p className="text-sm sm:text-2xl font-bold text-white mt-10">
-          Countdown to official Rich Fxxk minting day!
+          Phase 1 Minting Begins! Only 999 NFTs released!
         </p>
 
         <p className="text-center text-base md:text-lg text-white mt-4">
-          How many RICH FXXKs do you want to mint
+          How many Rich Fxxks do you want to mint?
         </p>
         <div className="flex flex-row mt-4 justify-center">
           <p className="mr-4 font-bold text-white">1</p>
