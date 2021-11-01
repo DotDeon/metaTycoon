@@ -30,6 +30,7 @@ export default function Home() {
         ></link>
       </Head>
       {/* 
+      
       <Header /> */}
       <header className="sticky top-0 z-50 grid grid-cols-3 bg-fblue shadow-md p-5 md:px-32">
         {/* Left */}
@@ -47,7 +48,7 @@ export default function Home() {
             />
           </div>
           <p className=" relative ml-2 mt-2 font-angkor items-center text-2xl text-white">
-            RICH FXXK
+            META TYCOON
           </p>
         </div>
         {/* Middle */}
@@ -96,7 +97,7 @@ export default function Home() {
           <div className="md:flex hidden relative flex-row pl- space-x-4">
             <a
               target="_blank"
-              href="https://twitter.com/RichFxxk"
+              href="https://twitter.com/metatycoonnft"
               rel="noopener noreferrer"
             >
               <div className="flex ml-10 relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
@@ -111,7 +112,7 @@ export default function Home() {
             </a>
             <a
               target="_blank"
-              href="https://opensea.io/collection/richfxxk"
+              href="https://opensea.io/collection/metatycoon"
               rel="noopener noreferrer"
             >
               <div className="flex relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
