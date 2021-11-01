@@ -186,7 +186,7 @@ function Banner() {
         </p>
 
         <p className="text-center text-base md:text-lg text-white mt-4">
-          How many Rich Fxxks do you want to mint?
+          How many Meta Tycoon NFTs do you want to mint?
         </p>
         <div className="flex flex-row mt-4 justify-center">
           <p className="mr-4 font-bold text-white">1</p>
