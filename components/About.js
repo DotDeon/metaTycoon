@@ -9,12 +9,12 @@ function About() {
     <div className="flex flex-col justify-center items-center bg-fteal">
       <div>
         <h1 className="text-white text-center mt-16 font-angkor text-4xl">
-          About
+          Meta Tycoon
         </h1>
       </div>
       <p className="text-white text-center px-5 md:w-1/3 text-lg mt-12">
-       9,999 Meta Tycoon NFT collection. <br>
-    <b>Co-own real estate in the Metaverse.</b>
+       9,999 generative artwork NFT collection. <br>
+    <b>Co-own real estate in the Metaverse!</b>
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
