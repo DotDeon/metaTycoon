@@ -13,9 +13,8 @@ function About() {
         </h1>
       </div>
       <p className="text-white text-center px-5 md:w-1/3 text-lg mt-12">
-        9,999 generative NFT collection with ‘Ultimate Roadmap’ loaded with
-        benefits for all Rich Fxxk holders. Releasing 999 NFTs in Phase 1 of
-        sale on 25 October, at 0.069ETH + gas.
+       9,999 Meta Tycoon NFT collection. <br>
+    <b>Co-own real estate in the Metaverse.</b>
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
