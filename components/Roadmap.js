@@ -29,6 +29,28 @@ function Roadmap() {
           >
             Download Whitepaper
           </button>
+          <button
+            className="bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transision duration-150"
+            onClick={() =>
+              window.open(
+                "https://pdfhost.io/v/PS1EIAHwO_Chi_Whitepaper",
+                "_blank"
+              )
+            }
+          >
+            Download Whitepaper(Simplified Chinese)
+          </button>
+          <button
+            className="bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transision duration-150"
+            onClick={() =>
+              window.open(
+                "https://pdfhost.io/v/N234pLUjr_Chi_Whitepaper",
+                "_blank"
+              )
+            }
+          >
+            Download Whitepaper(Traditional Chinese)
+          </button>
         </div>
       </div>
     </div>
