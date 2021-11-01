@@ -20,14 +20,12 @@ function FAQ() {
             className="block p-5 leading-normal cursor-pointer text-white"
             for="tab-multi-one"
           >
-            What is Rich Fxxk about?
+            What is Meta Tycoon about?
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
             <p className="p-5">
-              9,999 generative NFT collection with ‘Ultimate Roadmap’ loaded
-              with benefits for all Rich Fxxk holders. We want to build a
-              community of people that GO BIG, DREAM BIG, HUSTLE, and INVEST ALL
-              DAY.
+              9,999 generative NFT collection packed with utilities. The ‘Ultimate Roadmap’ loaded
+              with benefits for all Meta Tycoon NFT holders.
             </p>
           </div>
         </div>
@@ -45,13 +43,11 @@ function FAQ() {
             className="block p-5 leading-normal cursor-pointer text-white"
             for="tab-multi-two"
           >
-            When and where can I buy some Rich Fxxk NFTs?
+            How much is it to mint my Meta Tycoon NFTs?
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
             <p className="p-5">
-              We'll be minting some time in Nov 2021, please join our discord
-              for latest updates. After minting, you'll be able to purchase from
-              the secondary market in Opensea.
+             0.069ETH + gas fees
             </p>
           </div>
         </div>
@@ -98,11 +94,8 @@ function FAQ() {
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
             <p className="p-5">
-              In a quick summary, the team behind this project are real estate
-              gurus and we strive to build a community sharing our expertise and
-              rewarding holders for their involvement. Our whitepaper is pretty
-              comprehensive and elaborates on what we are really about so please
-              check out our whitepaper{" "}
+              In a quick summary, Meta Tycoon NFT holders will co-own land parcel(s) in the metaverse and be tycoons in the Metaverse together!
+                Read more about our plans in the whitepaper{" "}
               <a
                 className="cursor-pointer"
                 onClick={() =>
