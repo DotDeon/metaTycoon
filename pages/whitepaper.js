@@ -53,7 +53,7 @@ export default function Home() {
             />
           </div>
           <p className=" relative ml-2 mt-2 font-angkor items-center text-2xl text-white">
-            RICH FXXK
+          Meta Tycoon
           </p>
         </div>
 

@@ -6,20 +6,20 @@ function Club() {
     <div className="bg-fteal flex flex-col">
       <div>
         <h1 className="text-white text-center mt-16 font-angkor text-4xl">
-          Rich Fxxk Club
+          Meta Tycoon Club
         </h1>
       </div>
       <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-12">
         <div className="flex flex-col text-left px-12 md:w-1/3">
           <p className="text-champ   text-lg mt-12 font-bold">
-            Rich Fxxk Club Eligibility:
+            Meta Tycoon Club Eligibility:
           </p>
           <ul className="list-disc">
             <li className="text-white">Own any Meta Tycoon nft.</li>
           </ul>
 
           <p className="text-champ  text-lg mt-12 font-bold ">
-            Rich Fxxk Club Benefits:
+            Meta Tycoon Club Benefits:
           </p>
           <ul className="list-disc">
             <li className="text-white">

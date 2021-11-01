@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { useRouter } from "next/dist/client/router";
+import a4 from "../assets/roadmap.png";
+
 function Roadmap() {
   const router = useRouter();
   return (
@@ -51,6 +54,17 @@ function Roadmap() {
           >
             Download Whitepaper(Traditional Chinese)
           </button>
+        </div>
+        <div className="flex relative pt-24 min-w-screen items-center flex-col justify-center hover:scale-150 transision duration-200 ease-out">
+          <Image
+            src={a4}
+            layout="fixed"
+            objectFit="contain"
+            width={900}
+            height={880}
+            className="rounded-3xl"
+          />
+          {/* <Image src={a4} layout="fill" objectFit="contain" /> */}
         </div>
       </div>
     </div>

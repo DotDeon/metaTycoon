@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-
-
 function FAQ() {
   return (
     <div className="flex relative flex-col bg-fblue items-center">
@@ -24,8 +22,9 @@ function FAQ() {
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
             <p className="p-5">
-              9,999 generative NFT collection packed with utilities. The ‘Ultimate Roadmap’ loaded
-              with benefits for all Meta Tycoon NFT holders.
+              9,999 generative NFT collection packed with utilities. The
+              ‘Ultimate Roadmap’ loaded with benefits for all Meta Tycoon NFT
+              holders.
             </p>
           </div>
         </div>
@@ -46,9 +45,7 @@ function FAQ() {
             How much is it to mint my Meta Tycoon NFTs?
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
-            <p className="p-5">
-             0.069ETH + gas fees
-            </p>
+            <p className="p-5">0.069ETH + gas fees</p>
           </div>
         </div>
         {/* FAQ2 */}
@@ -90,12 +87,13 @@ function FAQ() {
             className="block p-5 leading-normal cursor-pointer text-white"
             for="tab-multi-four"
           >
-            What's different and unique about Rich Fxxk?
+            What's different and unique about Meta Tycoon?
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
             <p className="p-5">
-              In a quick summary, Meta Tycoon NFT holders will co-own land parcel(s) in the metaverse and be tycoons in the Metaverse together!
-                Read more about our plans in the whitepaper{" "}
+              In a quick summary, Meta Tycoon NFT holders will co-own land
+              parcel(s) in the metaverse and be tycoons in the Metaverse
+              together! Read more about our plans in the whitepaper{" "}
               <a
                 className="cursor-pointer"
                 onClick={() =>
