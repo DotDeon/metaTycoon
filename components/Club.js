@@ -15,7 +15,7 @@ function Club() {
             Rich Fxxk Club Eligibility:
           </p>
           <ul className="list-disc">
-            <li className="text-white">Own any Rich Fxxk nft.</li>
+            <li className="text-white">Own any Meta Tycoon nft.</li>
           </ul>
 
           <p className="text-champ  text-lg mt-12 font-bold ">
@@ -23,14 +23,13 @@ function Club() {
           </p>
           <ul className="list-disc">
             <li className="text-white">
-              Real estate enthus and gurus community
+              Real estate & crypto/NFT enthus community
             </li>
-            <li className="text-white">Earn Rich Fxxk Points</li>
+            <li className="text-white">Co-own Real Estate in the Metaverse</li>
             <li className="text-white">
-              Early access and exclusive release from Rich Fxxk street-wear
-              collection
+              Earn profits from the metaverse investments
             </li>
-            <li className="text-white">Upcoming Rich Fxxk NFT collections</li>
+            <li className="text-white">Upcoming NFT collections</li>
             <li className="text-white">Exclusive discord channels</li>
             <li className="text-white">Random airdrops</li>
             <li className="text-white">Exclusive events and competitions</li>
