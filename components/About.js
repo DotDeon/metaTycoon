@@ -13,8 +13,9 @@ function About() {
         </h1>
       </div>
       <p className="text-white text-center px-5 md:w-1/3 text-lg mt-12">
-        9,999 generative artwork NFT collection. <br />
-        <b>Co-own real estate in the Metaverse!</b>
+        Meta Tycoon is a 9,999 generative artwork NFT collection, and every NFT artwork is unique with different traits. <br />
+        <b>All holders co-own real estate in the Metaverse and have profits from sale/rent of the real estate sent to you in USDT!</b>
+    On top of that, all holders get to enjoy exclusive benefits as a Meta Tycoon Club member!
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
