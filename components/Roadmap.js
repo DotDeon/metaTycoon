@@ -21,15 +21,15 @@ function Roadmap() {
           >
             Read Whitepaper
           </button>
-          <button
+          {/* <button
             className="bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transision duration-150"
             onClick={() =>
               window.open("https://pdfhost.io/v/KzWVDVXb~_whitepaper", "_blank")
             }
           >
             Download Whitepaper
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transision duration-150"
             onClick={() =>
               window.open(
@@ -50,7 +50,7 @@ function Roadmap() {
             }
           >
             Download Whitepaper(Traditional Chinese)
-          </button>
+          </button> */}
           {/* <div className="hidden md:flex relative pt-24 min-w-screen items-center flex-col justify-center hover:scale-150 transision duration-200 ease-out">
           <Image
             src={a4}
