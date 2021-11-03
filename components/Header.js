@@ -17,7 +17,7 @@ function Header({ placeholder }) {
   const router = useRouter();
 
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 bg-fblue shadow-md p-5 md:px-32">
+    <header className="sticky top-0 z-50 grid grid-cols-1 md:grid-cols-3 bg-fblue shadow-md p-5 mx-16 md:px-32">
       {/* Left */}
       <div className="flex items-center justify-center flex-row">
         <div
@@ -39,11 +39,11 @@ function Header({ placeholder }) {
 
       {/* Middle */}
       {/* <div className="flex items-center  py-2"> */}
-      <div className="flex items-center space-x-4 justify-end text-white"></div>
+      <div className="hidden md:flex items-center space-x-4 justify-end text-white"></div>
       {/* </div> */}
 
       {/* Right */}
-      <div className="flex items-center space-x-4 justify-end text-white">
+      <div className="hidden md:flex items-center space-x-4 justify-end text-white">
         <div className="flex relative items-center space-x-4 justify-end text-white">
           <p
             className="hidden md:inline-flex cursor-pointer hover:text-champ"

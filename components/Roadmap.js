@@ -55,7 +55,7 @@ function Roadmap() {
             Download Whitepaper(Traditional Chinese)
           </button>
         </div>
-        <div className="flex relative pt-24 min-w-screen items-center flex-col justify-center hover:scale-150 transision duration-200 ease-out">
+        {/* <div className="hidden md:flex relative pt-24 min-w-screen items-center flex-col justify-center hover:scale-150 transision duration-200 ease-out">
           <Image
             src={a4}
             layout="fixed"
@@ -64,8 +64,17 @@ function Roadmap() {
             height={880}
             className="rounded-3xl"
           />
-          {/* <Image src={a4} layout="fill" objectFit="contain" /> */}
         </div>
+        <div className="flex md:hidden relative pt-24 min-w-screen items-center flex-col justify-center hover:scale-110 transision duration-200 ease-out">
+          <Image
+            src={a4}
+            layout="fixed"
+            objectFit="contain"
+            width={325}
+            height={320}
+            className="rounded-3xl"
+          />
+        </div> */}
       </div>
     </div>
   );

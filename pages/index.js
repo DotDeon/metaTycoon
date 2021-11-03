@@ -15,6 +15,7 @@ import discord from "../assets/discord.svg";
 import opensea from "../assets//opensea.png";
 import twitter from "../assets/twitter.svg";
 import animateScrollTo from "animated-scroll-to";
+import Mile from "../components/Mile";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
       <Header /> */}
       <header className="sticky top-0 z-50 grid grid-cols-3 bg-fblue shadow-md p-5 md:px-32">
         {/* Left */}
-        <div className="flex items-center justify-center flex-row">
+        <div className="flex items-center ml-12 md:ml-0 justify-center flex-row">
           <div
             onClick={() => router.push("/")}
             className="relative flex items-center h-10 cursor-pointer "
@@ -59,20 +60,15 @@ export default function Home() {
         {/* Right */}
         <div className="flex items-center space-x-4 justify-end text-white">
           <div className="flex relative items-center space-x-4 justify-end text-white">
-            <p
+            {/* <p
               className="hidden md:inline-flex cursor-pointer hover:text-champ"
               onClick={() =>
                 animateScrollTo(document.querySelector(".milestones"))
               }
             >
               Milestones
-            </p>
-            <p
-              className="hidden md:inline-flex cursor-pointer hover:text-champ"
-              onClick={() => animateScrollTo(document.querySelector(".club"))}
-            >
-              Club
-            </p>
+            </p> */}
+
             <p
               className="hidden md:inline-flex cursor-pointer hover:text-champ"
               onClick={() =>
@@ -83,15 +79,21 @@ export default function Home() {
             </p>
             <p
               className="hidden md:inline-flex cursor-pointer hover:text-champ"
-              onClick={() => animateScrollTo(document.querySelector(".team"))}
+              onClick={() => animateScrollTo(document.querySelector(".club"))}
             >
-              Team
+              Club
             </p>
             <p
               className="hidden md:inline-flex cursor-pointer hover:text-champ"
               onClick={() => animateScrollTo(document.querySelector(".faq"))}
             >
               FAQ
+            </p>
+            <p
+              className="hidden md:inline-flex cursor-pointer hover:text-champ"
+              onClick={() => animateScrollTo(document.querySelector(".team"))}
+            >
+              Team
             </p>
           </div>
           <div className="md:flex hidden relative flex-row pl- space-x-4">
@@ -143,28 +145,28 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       {/* Still need CountDown & Mint Button */}
       <Banner />
       <div className="about">
         <About />
       </div>
-      <div className="milestones pt-12">
-        <Milestones />
+      {/* <div className="milestones pt-12">
+        {/* <Milestones /> */}
+      {/* <Mile /> */}
+      {/* </div> */}
+      <div className="roadmap mt-8">
+        <Roadmap />
       </div>
       <div className="club pt-12">
         <Club />
       </div>
-      <div className="roadmap mt-8">
-        <Roadmap />
-      </div>
-
-      <div className="team mt-12">
-        <Teams />
-      </div>
       <div className="faq">
         <FAQ />
       </div>
+      <div className="team mt-12">
+        <Teams />
+      </div>
+
       <Footer />
     </div>
   );

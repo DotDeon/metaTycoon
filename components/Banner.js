@@ -178,10 +178,10 @@ function Banner() {
   return (
     <div className="relative h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
       <Image src={banner} layout="fill" objectFit="cover" />
-      <div className="ml-2 absolute top-1/4 md:top-1/2 w-full text-center">
+      <div className="ml-2 absolute top-1/2 md:top-1/2 w-full text-center">
         <Countdown className="pl-4" />
 
-        <div className="flex flex-row mt-4 justify-center">
+        <div className="flex flex-row mt-12 justify-center">
           <p className="mr-4 font-bold text-white">1</p>
           <Slider
             styles={{
