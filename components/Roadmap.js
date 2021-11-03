@@ -21,7 +21,7 @@ function Roadmap() {
           >
             Read Whitepaper
           </button>
-          
+          </div>
         </div>
       </div>
     </div>
