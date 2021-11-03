@@ -19,15 +19,21 @@ function Club() {
             <li className="text-white">
               70% profits fairly distributed to all holders
             </li>
-            <li className="text-white">30% profits go back to community wallet</li>
             <li className="text-white">
-              Exclusive Metaverse events
+              30% profits go back to community wallet
             </li>
-            <li className="text-white">Exclusive Metaverse merch & 3D models</li>
+            <li className="text-white">Exclusive Metaverse events</li>
+            <li className="text-white">
+              Exclusive Metaverse merch & 3D models
+            </li>
             <li className="text-white">Digital membership card</li>
             <li className="text-white">Physical metal membership card</li>
-            <li className="text-white">Exclusive discord channels (with crypto signals, real estate tips, & more)</li>
-                     <li className="text-white">& many more!</li>
+            <li className="text-white">
+              Exclusive discord channels (with crypto signals, real estate tips,
+              & more)
+            </li>
+            <li className="text-white">& many more!</li>
+          </ul>
         </div>
         <div className="flex relative flex-col items-center justify-center mt-6 md:mt-16">
           <Image
