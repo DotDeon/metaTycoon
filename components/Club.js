@@ -12,28 +12,22 @@ function Club() {
       <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-12">
         <div className="flex flex-col text-left px-12 md:w-1/3">
           <p className="text-champ   text-lg mt-12 font-bold">
-            Meta Tycoon Club Eligibility:
+            Our unmatched utilities & perks:
           </p>
           <ul className="list-disc">
-            <li className="text-white">Own any Meta Tycoon nft.</li>
-          </ul>
-
-          <p className="text-champ  text-lg mt-12 font-bold ">
-            Meta Tycoon Club Benefits:
-          </p>
-          <ul className="list-disc">
+            <li className="text-white">Co-own real estate in the Metaverse</li>
             <li className="text-white">
-              Real estate & crypto/NFT enthus community
+              70% profits fairly distributed to all holders
             </li>
-            <li className="text-white">Co-own Real Estate in the Metaverse</li>
+            <li className="text-white">30% profits go back to community wallet</li>
             <li className="text-white">
-              Earn profits from the metaverse investments
+              Exclusive Metaverse events
             </li>
-            <li className="text-white">Upcoming NFT collections</li>
-            <li className="text-white">Exclusive discord channels</li>
-            <li className="text-white">Random airdrops</li>
-            <li className="text-white">Exclusive events and competitions</li>
-          </ul>
+            <li className="text-white">Exclusive Metaverse merch & 3D models</li>
+            <li className="text-white">Digital membership card</li>
+            <li className="text-white">Physical metal membership card</li>
+            <li className="text-white">Exclusive discord channels (with crypto signals, real estate tips, & more)</li>
+                     <li className="text-white">& many more!</li>
         </div>
         <div className="flex relative flex-col items-center justify-center mt-6 md:mt-16">
           <Image
