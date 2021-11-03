@@ -1,4 +1,5 @@
 import banner from "../assets/banner.png";
+import banner2 from "../assets/banner2.png";
 import Countdown from "./Countdown";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
@@ -178,8 +179,16 @@ function Banner() {
   return (
     <div className="relative h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[700px]">
       <Image src={banner} layout="fill" objectFit="cover" />
-      <div className="ml-2 absolute top-1/2 md:top-1/2 w-full text-center">
-        <Countdown className="pl-4" />
+      {/* <Image src={banner2} layout="fill" objectFit="cover" className="mt-12" /> */}
+      {/* <img src={banner2} alt="" className="min-w-screen h-32" /> */}
+      <Image
+        src={banner2}
+        layout="fill"
+        objectFit="contain"
+        className="mt-12 md:mt-24"
+      />
+      <div className="ml-2 absolute top-1/3 md:top-1/2 w-full text-center">
+        {/* <Countdown className="pl-4" /> */}
 
         <div className="flex flex-row mt-12 justify-center">
           <p className="mr-4 font-bold text-white">1</p>
