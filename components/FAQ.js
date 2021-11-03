@@ -97,7 +97,7 @@ function FAQ() {
               <a
                 className="cursor-pointer"
                 onClick={() =>
-                  window.open("http://whitepaper.richfxxk.com/", "_blank")
+                  window.open("http://whitepaper.meta-tycoon.club/", "_blank")
                 }
               >
                 here
