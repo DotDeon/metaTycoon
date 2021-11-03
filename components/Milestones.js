@@ -6,7 +6,7 @@ function Milestones() {
           <h1 className="hedding-title text-fblue text-center font-angkor text-4xl -mt-10">
        
           </h1>
-        </div>
+        </div> </div> </div>
        
   );
 }
