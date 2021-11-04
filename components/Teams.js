@@ -29,7 +29,7 @@ function Teams() {
               />
               <div className="image__overlay image__overlay--blur">
                 <p className=" text-xs text-center">Founder</p>
-                <h1 className="text-4xl font-bold text-center">Jis</h1>
+                <h1 className="text-4xl font-bold text-center">Jan</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
                   Real estate investor/coach with passion in street-wear and
                   NFTs. – Involved in every part of the project!
