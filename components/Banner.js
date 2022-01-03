@@ -207,21 +207,21 @@ function Banner() {
         objectFit="contain"
         className="mt-12 md:mt-24"
       />
-      <div className="ml-2 absolute top-1/3 md:top-1/2 w-full text-center">
+      <div className="ml-2 absolute top-1/2 md:top-1/2 w-full text-center">
         {/* <Countdown className="pl-4" /> */}
         <div>
-          <p className="text-white font-angkor text-center">
-            <p className="text-white">{totalMint} / 999 minted</p>
+          <p className="text-white text-xs font-angkor text-center">
+            {totalMint} / 999 minted
           </p>
         </div>
         <div>
-          <p className="text-white font-angkor text-center text-3xl mt-3">
+          <p className="text-white font-angkor text-center md:text-3xl mt-3">
             {' '}
             Price: {`${(nftQTY * 0.069).toString().substring(0, 5)}`}
           </p>
         </div>
         <div className="flex flex-row"></div>
-        <div className="flex flex-row mt-6 justify-center">
+        <div className="flex flex-row md:mt-6 justify-center">
           <p className="mr-4 font-bold text-white">1</p>
           <Slider
             styles={{
