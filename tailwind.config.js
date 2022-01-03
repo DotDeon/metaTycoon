@@ -9,8 +9,11 @@ module.exports = {
       fblue: '#111d46',
       fteal: '#3d707e',
       champ: '#ffcfa1',
-      black: '#000000',
-      white: '#e6e6e6',
+      black: '#1c1c1c',
+      white: '#cbcbcb',
+      gray1: '#7d7d7d',
+      gray2: '#959595',
+      gray3: '#bababa',
     },
     extend: {
       fontFamily: {

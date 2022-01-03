@@ -1,19 +1,19 @@
-import Image from "next/image";
-import about1 from "../assets/about1.jpg";
+import Image from 'next/image';
+import about1 from '../assets/about1.jpg';
 
-import giselle from "../assets/Giselle.jpg";
-import jay from "../assets/Jay.jpg";
-import jis from "../assets/Jis.jpg";
-import maxim from "../assets/Maxim.jpg";
-import yun from "../assets/Yun.jpg";
+import giselle from '../assets/Giselle.jpg';
+import jay from '../assets/Jay.jpg';
+import jis from '../assets/Jis.jpg';
+import maxim from '../assets/Maxim.jpg';
+import yun from '../assets/Yun.jpg';
 
 function Teams() {
   return (
-    <div className="bg-fteal flex justify-center">
+    <div className="bg-white flex justify-center">
       <div className="container py-24">
         <div>
-          <h1 className="text-center text-white font-angkor text-4xl">Team</h1>
-          <p className="text-center text-white font-bold text-lg mt-4">
+          <h1 className="text-center text-gray1 font-angkor text-4xl">Team</h1>
+          <p className="text-center text-gray1 font-bold text-lg mt-4">
             Mouseover to read team’s description
           </p>
         </div>

@@ -4,7 +4,7 @@ import twitter from "../assets/twitter.svg";
 import Image from "next/image";
 function Footer() {
   return (
-    <div className="bg-fteal flex justify-center">
+    <div className="bg-black flex justify-center">
       <div className="flex flex-col py-12">
         <div>
           <p className="text-white font-bold text-lg text-center mt-4">

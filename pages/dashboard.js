@@ -4,6 +4,7 @@ import Collectioncard from '../components/admin/Collectioncard';
 import img from '../assets/1.jpg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from '../components/Footer';
 
 export default function Dashboard() {
   const [nftData, setNftData] = useState([]);
@@ -29,7 +30,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-fteal">
+    <div className="min-h-screen bg-gray3 overflow-x-hidden">
       <Head>
         <title>META TYCOON</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
@@ -41,7 +42,7 @@ export default function Dashboard() {
         ></link>
       </Head>
       <Aheader />
-      <div className="flex flex-row  justify-between min-w-screen bg-fblue md:px-36 px-60 py-20">
+      <div className="flex flex-row  justify-between min-w-screen bg-black md:px-36 px-60 py-20">
         <div className="flex flex-col justify-start items-start">
           <h1 className="text-white font-angkor text-6xl">
             {nftData[0]?.owner.user.username}
@@ -55,7 +56,7 @@ export default function Dashboard() {
           <p>NEXT WITHDRAWAL DATE</p>
           <p>1 December 2022</p>
           <button
-            className="bg-fteal mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
+            className="bg-gray1 mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
             // onClick={(e) => {
             //   e.preventDefault();
             //   dispatch(connect());
@@ -65,12 +66,12 @@ export default function Dashboard() {
           </button>
         </div>
       </div>
-      <div className="flex flex-col mt-3 bg-fteal min-w-screen md:px-36 px-60">
-        <h1 className="text-white font-angkor text-center text-3xl 2xl:text-4xl">
+      <div className="flex flex-col mt-3  min-w-screen md:px-36 px-60 pb-10">
+        <h1 className="text-black font-angkor text-center text-3xl 2xl:text-4xl">
           My Meta Tycoons
         </h1>
 
-        <div className=" flex flex-wrap items-center justify-start bg-fteal min-w-screen">
+        <div className=" flex flex-wrap items-center justify-start w-screen">
           {nftData.map((nft) => (
             <Collectioncard
               key={nft.token_id}
@@ -82,6 +83,7 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

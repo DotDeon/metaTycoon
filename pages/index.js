@@ -1,25 +1,25 @@
-import Head from "next/head";
-import About from "../components/About";
-import Image from "next/image";
-import Banner from "../components/Banner";
-import Club from "../components/Club";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Milestones from "../components/Milestones";
-import Roadmap from "../components/Roadmap";
-import Teams from "../components/Teams";
-import { useRouter } from "next/dist/client/router";
-import logo from "../assets/logo.png";
-import discord from "../assets/discord.svg";
-import opensea from "../assets//opensea.png";
-import twitter from "../assets/twitter.svg";
-import animateScrollTo from "animated-scroll-to";
-import Mile from "../components/Mile";
+import Head from 'next/head';
+import About from '../components/About';
+import Image from 'next/image';
+import Banner from '../components/Banner';
+import Club from '../components/Club';
+import FAQ from '../components/FAQ';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Milestones from '../components/Milestones';
+import Roadmap from '../components/Roadmap';
+import Teams from '../components/Teams';
+import { useRouter } from 'next/dist/client/router';
+import logo from '../assets/logo.png';
+import discord from '../assets/discord.svg';
+import opensea from '../assets//opensea.png';
+import twitter from '../assets/twitter.svg';
+import animateScrollTo from 'animated-scroll-to';
+import Mile from '../components/Mile';
 
 export default function Home() {
   return (
-    <div className="bg-fblue flex flex-col">
+    <div className="bg-black flex flex-col">
       <Head>
         <title>META TYCOON NFT</title>
         <link rel="icon" href="/favicon.ico" />
@@ -33,11 +33,11 @@ export default function Home() {
       {/* 
       
       <Header /> */}
-      <header className="sticky top-0 z-50 grid grid-cols-3 bg-fblue shadow-md p-5 md:px-32">
+      <header className="sticky top-0 z-50 grid grid-cols-3 bg-black shadow-md p-5 md:px-32">
         {/* Left */}
         <div className="flex items-center ml-12 md:ml-0 justify-center flex-row">
           <div
-            onClick={() => router.push("/")}
+            onClick={() => router.push('/')}
             className="relative flex items-center h-10 cursor-pointer "
           >
             <Image
@@ -70,28 +70,28 @@ export default function Home() {
             </p> */}
 
             <p
-              className="hidden md:inline-flex cursor-pointer hover:text-champ"
+              className="hidden md:inline-flex cursor-pointer hover:text-gray3"
               onClick={() =>
-                animateScrollTo(document.querySelector(".roadmap"))
+                animateScrollTo(document.querySelector('.roadmap'))
               }
             >
               Roadmap
             </p>
             <p
-              className="hidden md:inline-flex cursor-pointer hover:text-champ"
-              onClick={() => animateScrollTo(document.querySelector(".club"))}
+              className="hidden md:inline-flex cursor-pointer hover:text-gray3"
+              onClick={() => animateScrollTo(document.querySelector('.club'))}
             >
               Club
             </p>
             <p
-              className="hidden md:inline-flex cursor-pointer hover:text-champ"
-              onClick={() => animateScrollTo(document.querySelector(".faq"))}
+              className="hidden md:inline-flex cursor-pointer hover:text-gray3"
+              onClick={() => animateScrollTo(document.querySelector('.faq'))}
             >
               FAQ
             </p>
             <p
-              className="hidden md:inline-flex cursor-pointer hover:text-champ"
-              onClick={() => animateScrollTo(document.querySelector(".team"))}
+              className="hidden md:inline-flex cursor-pointer hover:text-gray3"
+              onClick={() => animateScrollTo(document.querySelector('.team'))}
             >
               Team
             </p>
@@ -102,7 +102,7 @@ export default function Home() {
               href="https://twitter.com/metatycoonnft"
               rel="noopener noreferrer"
             >
-              <div className="flex ml-10 relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+              <div className="flex ml-10 relative border-2 hover:border-gray3  border-white px-3 py-3 rounded-full hover:bg-gray3">
                 <Image
                   src={twitter}
                   layout="fixed"
@@ -117,7 +117,7 @@ export default function Home() {
               href="https://opensea.io/collection/metatycoon"
               rel="noopener noreferrer"
             >
-              <div className="flex relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+              <div className="flex relative border-2 hover:border-gray3  border-white px-3 py-3 rounded-full hover:bg-gray3">
                 <Image
                   src={opensea}
                   layout="fixed"
@@ -132,7 +132,7 @@ export default function Home() {
               href="https://discord.gg/5DztJhufyT"
               rel="noopener noreferrer"
             >
-              <div className="flex relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+              <div className="flex relative border-2 hover:border-gray3  border-white px-3 py-3 rounded-full hover:bg-gray3">
                 <Image
                   src={discord}
                   layout="fixed"
@@ -154,7 +154,7 @@ export default function Home() {
         {/* <Milestones /> */}
       {/* <Mile /> */}
       {/* </div> */}
-      <div className="roadmap mt-8">
+      <div className="roadmap mt-8 ">
         <Roadmap />
       </div>
       <div className="club pt-12">

@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Collectioncard = ({ id, name, value, img }) => {
   return (
-    <div className="flex flex-col w-[200px] 2xl:w-[400px]  bg-fblue rounded-3xl mx-3 drop-shadow-xl cursor-pointer hover:opacity-80 hover:shadow-lg transision first:border-t hover:scale-105 transform transution duration-300 ease-out mt-3 2xl:mt-10">
+    <div className="flex flex-col w-[200px] 2xl:w-[400px]  bg-black rounded-3xl mx-3 drop-shadow-xl cursor-pointer hover:opacity-80 hover:shadow-lg transision first:border-t hover:scale-105 transform transution duration-300 ease-out mt-3 2xl:mt-10">
       <div className="hidden xl:flex">
         <Image
           layout="fixed"

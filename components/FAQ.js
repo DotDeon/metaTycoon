@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 function FAQ() {
   return (
-    <div className="flex relative flex-col bg-fblue items-center">
+    <div className="flex relative flex-col bg-black items-center">
       <h1 className="text-white font-angkor text-4xl mt-16">FAQs</h1>
 
       {/* FAQ1 */}
@@ -16,7 +16,7 @@ function FAQ() {
           />
           <label
             className="block p-5 leading-normal cursor-pointer text-white"
-            for="tab-multi-one"
+            htmlFor="tab-multi-one"
           >
             What is Meta Tycoon about?
           </label>
@@ -40,7 +40,7 @@ function FAQ() {
           />
           <label
             className="block p-5 leading-normal cursor-pointer text-white"
-            for="tab-multi-two"
+            htmlFor="tab-multi-two"
           >
             How much is it to mint my Meta Tycoon NFTs?
           </label>
@@ -60,7 +60,7 @@ function FAQ() {
           />
           <label
             className="block p-5 leading-normal cursor-pointer text-white"
-            for="tab-multi-three"
+            htmlFor="tab-multi-three"
           >
             Who are the people behind the team?
           </label>
@@ -85,7 +85,7 @@ function FAQ() {
           />
           <label
             className="block p-5 leading-normal cursor-pointer text-white"
-            for="tab-multi-four"
+            htmlFor="tab-multi-four"
           >
             What's different and unique about Meta Tycoon?
           </label>
@@ -93,11 +93,11 @@ function FAQ() {
             <p className="p-5">
               In a quick summary, Meta Tycoon NFT holders will co-own land
               parcel(s) in the metaverse and be tycoons in the Metaverse
-              together! Read more about our plans in the whitepaper{" "}
+              together! Read more about our plans in the whitepaper{' '}
               <a
                 className="cursor-pointer"
                 onClick={() =>
-                  window.open("http://whitepaper.meta-tycoon.club/", "_blank")
+                  window.open('http://whitepaper.meta-tycoon.club/', '_blank')
                 }
               >
                 here

@@ -17,7 +17,7 @@ function Header({ placeholder }) {
   const router = useRouter();
 
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-1 md:grid-cols-3 bg-fblue shadow-md p-5 mx-16 md:px-32">
+    <header className="sticky top-0 z-50 grid grid-cols-1 md:grid-cols-3 bg-black shadow-md p-5 mx-16 md:px-32">
       {/* Left */}
       <div className="flex items-center justify-center flex-row">
         <div

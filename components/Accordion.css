@@ -11,7 +11,8 @@
 /* Tab content - closed */
 .tab-content {
   max-height: 0;
-  background-color: #b8c2cc;
+  background-color: #1c1c1c;
+  color: #cbcbcb;
   -webkit-transition: max-height 0.35s;
   -o-transition: max-height 0.35s;
   transition: max-height 0.35s;
@@ -27,8 +28,8 @@
   padding: 1.25rem; /*.p-5*/
   border-left-width: 2px; /*.border-l-2*/
   border-color: #3d707e; /*.border-indigo*/
-  background-color: #111d46; /*.bg-gray-100 */
-  color: #b8c2cc;
+  background-color: #7d7d7d; /*.bg-gray-100 */
+  color: #cbcbcb;
 }
 /* Icon */
 .tab label::after {
@@ -73,12 +74,17 @@
   background-color: #b8c2cc; /*.bg-indigo*/
   color: #111d46; /*.text-grey-lightest*/
 }
-
-/* fblue: "#111d46",
-fteal: "#3d707e",
-champ: "#ffcfa1",
-black: "#fff9f2",
-white: "#e6e6e6", */
+/* 
+transparent: 'transparent',
+current: 'currentColor',
+fblue: '#111d46',
+fteal: '#3d707e',
+champ: '#ffcfa1',
+black: '#1c1c1c',
+white: '#cbcbcb',
+gray1: '#7d7d7d',
+gray2: '#959595',
+gray3: '#bababa', */
 
 /*Image Hover*/
 .image {

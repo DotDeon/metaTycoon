@@ -6,7 +6,7 @@ import twitter from '../../assets/twitter.svg';
 
 export default function Aheader() {
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-1 md:grid-cols-3 bg-fblue shadow-md p-5">
+    <header className="sticky top-0 z-50 grid grid-cols-1 md:grid-cols-3 bg-black shadow-md p-5">
       {/* Left */}
       <div className="flex items-center justify-center flex-row">
         <div
@@ -40,7 +40,7 @@ export default function Aheader() {
             href="https://twitter.com/metatycoonnft"
             rel="noopener noreferrer"
           >
-            <div className="flex ml-10 relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+            <div className="flex ml-10 relative border-2 hover:border-gray3 border-white px-3 py-3 rounded-full hover:bg-gray3">
               <Image
                 src={twitter}
                 layout="fixed"
@@ -55,7 +55,7 @@ export default function Aheader() {
             href="https://opensea.io/collection/metatycoon"
             rel="noopener noreferrer"
           >
-            <div className="flex relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+            <div className="flex relative border-2 hover:border-gray3 border-white px-3 py-3 rounded-full hover:bg-gray3">
               <Image
                 src={opensea}
                 layout="fixed"
@@ -70,7 +70,7 @@ export default function Aheader() {
             href="https://discord.gg/5DztJhufyT"
             rel="noopener noreferrer"
           >
-            <div className="flex relative border-2 hover:border-champ border-white px-3 py-3 rounded-full hover:bg-champ">
+            <div className="flex relative border-2 hover:border-gray3 border-white px-3 py-3 rounded-full hover:bg-gray3">
               <Image
                 src={discord}
                 layout="fixed"
