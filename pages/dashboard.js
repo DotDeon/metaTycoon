@@ -20,6 +20,9 @@ import {
   deleteDoc,
 } from '@firebase/firestore';
 import { db } from '../firebase';
+import { useRecoilState } from 'recoil';
+import { pendingState } from '../atoms/sumPendingAtom';
+import { valueState } from '../atoms/sumValueAtom';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -29,36 +32,22 @@ export default function Dashboard() {
   const [nftAddress, setNFTAddress] = useState(
     '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
   );
+  const [pending, setPending] = useRecoilState(pendingState);
+  const [totalValue, setTotalValue] = useRecoilState(valueState);
 
   useEffect(() => {
-    // const createNFTs = async () => {
-    //   var i = 692;
-    //     console.log('The number is ' + i);
-    //     const docRef = await addDoc(collection(db, 'NFTs'), {
-    //       tokenID: i,
-    //       value: 0,
-    //       pending: 0,
-    //       timestamp: serverTimestamp(),
-    //     });
-    //     i++;
-    //   }
-    // };
-    // return createNFTs();
-
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-      console.log(blockchain.account);
+      // console.log(blockchain.account);
       const getMyNfts = async () => {
         const openseaData = await axios.get(
-          // 'https://api.opensea.io/api/v1/assets?owner=0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50
-
           'https://api.opensea.io/api/v1/assets?owner=' +
             nftAddress +
             '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
         );
 
         setNftData(openseaData.data.assets);
-        console.log(openseaData.data.assets);
+        // console.log(openseaData.data.assets);
 
         if ((openseaData.data.assets.length = 0)) {
           router.push('/login');
@@ -69,7 +58,6 @@ export default function Dashboard() {
     } else {
       router.push('/login');
     }
-
     // const docRef = await addDoc(collection(db, "post"), {
     //   username: session?.user?.username,
     //   caption: captionRef.current.value,
@@ -97,8 +85,8 @@ export default function Dashboard() {
             {nftData[0]?.owner.user.username}
           </h1>
           <div className="flex flex-col text-left font-angkor text-white mt-8">
-            <p>Balance: $400</p>
-            <p className="mt-2">Pending Withdrawl: $0</p>
+            <p>Balance: $ {totalValue}</p>
+            <p className="mt-2">Pending Withdrawl: $ {pending}</p>
           </div>
         </div>
         <div className="flex flex-col text-right font-angkor text-white justify-end items-end">

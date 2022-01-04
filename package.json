@@ -36,6 +36,7 @@
     "react-slick": "^0.28.1",
     "react-snap-scroll": "^0.0.5",
     "react-touch-carousel": "^0.10.2",
+    "recoil": "^0.5.2",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",

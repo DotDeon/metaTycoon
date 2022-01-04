@@ -2,7 +2,7 @@ import Image from 'next/image';
 import about1 from '../assets/about1.jpg';
 
 import giselle from '../assets/Giselle.jpg';
-import jay from '../assets/Ricky.jpg';
+import jay from '../assets/Ricky.png';
 import jis from '../assets/Jis.jpg';
 import maxim from '../assets/Maxim.jpg';
 import yun from '../assets/Yun.jpg';
