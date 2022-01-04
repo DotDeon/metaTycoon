@@ -21,6 +21,7 @@
     "axios": "^0.24.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "firebase": "^9.6.1",
     "ipfs-http-client": "^52.0.0",
     "next": "latest",
     "nw-react-slider": "^2.0.1",

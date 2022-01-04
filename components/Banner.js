@@ -194,6 +194,8 @@ function Banner() {
         return undefined;
       }
     }
+
+    return count('metatycoon');
   }, []);
 
   return (
@@ -217,7 +219,7 @@ function Banner() {
         <div>
           <p className="text-white font-angkor text-center md:text-3xl mt-3">
             {' '}
-            Price: {`${(nftQTY * 0.069).toString().substring(0, 5)}`}
+            Price: {`${(nftQTY * 0.069).toString().substring(0, 5)}`} ETH
           </p>
         </div>
         <div className="flex flex-row"></div>

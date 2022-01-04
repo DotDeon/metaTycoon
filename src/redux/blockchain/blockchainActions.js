@@ -1,32 +1,32 @@
 // constants
-import Web3 from "web3";
-import SmartContract from "../../contracts/SmartContract.json";
+import Web3 from 'web3';
+import SmartContract from '../../contracts/SmartContract.json';
 // log
-import { fetchData } from "../data/dataActions";
+import { fetchData } from '../data/dataActions';
 
 const connectRequest = () => {
   return {
-    type: "CONNECTION_REQUEST",
+    type: 'CONNECTION_REQUEST',
   };
 };
 
 const connectSuccess = (payload) => {
   return {
-    type: "CONNECTION_SUCCESS",
+    type: 'CONNECTION_SUCCESS',
     payload: payload,
   };
 };
 
 const connectFailed = (payload) => {
   return {
-    type: "CONNECTION_FAILED",
+    type: 'CONNECTION_FAILED',
     payload: payload,
   };
 };
 
 const updateAccountRequest = (payload) => {
   return {
-    type: "UPDATE_ACCOUNT",
+    type: 'UPDATE_ACCOUNT',
     payload: payload,
   };
 };
@@ -38,16 +38,16 @@ export const connect = () => {
       let web3 = new Web3(window.ethereum);
       try {
         const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
+          method: 'eth_requestAccounts',
         });
         const networkId = await window.ethereum.request({
-          method: "net_version",
+          method: 'net_version',
         });
         //const NetworkData = await SmartContract.networks[networkId];
         if (networkId == 1) {
           const SmartContractObj = new web3.eth.Contract(
             SmartContract.abi,
-            "0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F"
+            '0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F'
           );
           dispatch(
             connectSuccess({
@@ -57,21 +57,21 @@ export const connect = () => {
             })
           );
           // Add listeners start
-          window.ethereum.on("accountsChanged", (accounts) => {
+          window.ethereum.on('accountsChanged', (accounts) => {
             dispatch(updateAccount(accounts[0]));
           });
-          window.ethereum.on("chainChanged", () => {
+          window.ethereum.on('chainChanged', () => {
             window.location.reload();
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Change network to Etherium."));
+          dispatch(connectFailed('Change network to Etherium.'));
         }
       } catch (err) {
-        dispatch(connectFailed("Something went wrong."));
+        dispatch(connectFailed('Something went wrong.'));
       }
     } else {
-      dispatch(connectFailed("Install Metamask."));
+      dispatch(connectFailed('Install Metamask.'));
     }
   };
 };

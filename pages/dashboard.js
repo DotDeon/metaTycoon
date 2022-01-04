@@ -5,29 +5,79 @@ import img from '../assets/1.jpg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from '../components/Footer';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../src/redux/data/dataActions';
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  serverTimestamp,
+  query,
+  setDoc,
+  doc,
+  deleteDoc,
+} from '@firebase/firestore';
+import { db } from '../firebase';
 
 export default function Dashboard() {
+  const router = useRouter();
   const [nftData, setNftData] = useState([]);
+  const dispatch = useDispatch();
+  const blockchain = useSelector((state) => state.blockchain);
   const [nftAddress, setNFTAddress] = useState(
     '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
   );
 
   useEffect(() => {
-    const getMyNfts = async () => {
-      const openseaData = await axios.get(
-        // 'https://api.opensea.io/api/v1/assets?owner=0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50
+    // const createNFTs = async () => {
+    //   var i = 648;
+    //   while (i < 10001) {
+    //     console.log('The number is ' + i);
+    //     const docRef = await addDoc(collection(db, 'NFTs'), {
+    //       id: i,
+    //       value: 0,
+    //       pending: 0,
+    //       timestamp: serverTimestamp(),
+    //     });
+    //     i++;
+    //   }
+    // };
+    // return createNFTs();
 
-        'https://api.opensea.io/api/v1/assets?owner=' +
-          nftAddress +
-          '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
-      );
+    if (blockchain.account !== '' && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+      console.log(blockchain.account);
+      const getMyNfts = async () => {
+        const openseaData = await axios.get(
+          // 'https://api.opensea.io/api/v1/assets?owner=0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50
 
-      setNftData(openseaData.data.assets);
-      console.log(openseaData.data.assets);
-    };
+          'https://api.opensea.io/api/v1/assets?owner=' +
+            nftAddress +
+            '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
+        );
 
-    return getMyNfts();
-  }, []);
+        setNftData(openseaData.data.assets);
+        console.log(openseaData.data.assets);
+
+        if ((openseaData.data.assets.length = 0)) {
+          router.push('/login');
+        }
+      };
+
+      return getMyNfts();
+    } else {
+      router.push('/login');
+    }
+
+    // const docRef = await addDoc(collection(db, "post"), {
+    //   username: session?.user?.username,
+    //   caption: captionRef.current.value,
+    //   profileImg: Ysession.user.image,
+    //   timestamp: serverTimestamp(),
+    // });
+  }, [blockchain.smartContract, dispatch]);
 
   return (
     <div className="min-h-screen bg-gray3 overflow-x-hidden">
