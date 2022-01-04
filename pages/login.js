@@ -38,13 +38,16 @@ export default function login() {
         );
 
         setNftData(openseaData.data.assets);
-        console.log(openseaData.data.assets);
 
         if (openseaData.data.assets.length > 0) {
-          console.log('Log In');
-          router.push('/dashboard');
+          if (
+            blockchain.account == '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'
+          ) {
+            router.push('/admin');
+          } else {
+            router.push('/dashboard');
+          }
         } else {
-          console.log('Cant log In');
         }
       };
 

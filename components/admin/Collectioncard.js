@@ -28,11 +28,11 @@ const Collectioncard = ({ id, name, img }) => {
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        // console.log(doc.data().value);
+ 
         setValue(doc.data().value);
       });
     } else {
-      console.log(nftValue);
+   
     }
   }, [db]);
 

@@ -17,6 +17,7 @@ import {
   query,
   setDoc,
   getDocs,
+  updateDoc,
   where,
   doc,
   deleteDoc,
@@ -36,63 +37,87 @@ export default function Dashboard() {
   );
   const [pending, setPending] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
+  const [canWithdraw, setCanWithDraw] = useState(false);
 
+  const getMyNfts = async () => {
+    const val = 0;
+    const pend = 0;
+    const openseaData = await axios.get(
+      'https://api.opensea.io/api/v1/assets?owner=' +
+        blockchain.account +
+        '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
+    );
+
+    setNftData(openseaData.data.assets);
+
+    var assetCount = openseaData.data.assets.length;
+    for (var i = 0; i < assetCount; i++) {
+      const q = query(
+        collection(db, 'NFTs'),
+        where('tokenID', '==', parseInt(openseaData.data.assets[i].token_id))
+      );
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        val = parseInt(val) + parseInt(doc.data().value);
+        pend = parseInt(pend) + parseInt(doc.data().pending);
+        setTotalValue(val);
+        setPending(pend);
+      });
+    }
+
+    if ((openseaData.data.assets.length = 0)) {
+      router.push('/login');
+    }
+  };
+
+  const checkWithDraw = async () => {
+    const q = query(collection(db, 'Admin'), where('adminToken', '==', 1));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc2) => {
+      setCanWithDraw(doc2.data().canWithdraw);
+      console.log(canWithdraw);
+    });
+  };
   useEffect(() => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-
-      const getMyNfts = async () => {
-        const openseaData = await axios.get(
-          'https://api.opensea.io/api/v1/assets?owner=' +
-            nftAddress +
-            '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
-        );
-
-        setNftData(openseaData.data.assets);
-
-        var assetCount = openseaData.data.assets.length;
-        for (var i = 0; i < assetCount; i++) {
-          const q = query(
-            collection(db, 'NFTs'),
-            where(
-              'tokenID',
-              '==',
-              parseInt(openseaData.data.assets[i].token_id)
-            )
-          );
-          const querySnapshot = await getDocs(q);
-          const val = 0;
-          const pending = 0;
-          querySnapshot.forEach((doc) => {
-            val = parseInt(val) + parseInt(doc.data().value);
-            pending = parseInt(pending) + parseInt(doc.data().pending);
-          });
-          setTotalValue(val);
-          setPending(pending);
-        }
-
-        if ((openseaData.data.assets.length = 0)) {
-          router.push('/login');
-        }
-      };
-
-      return getMyNfts();
+      checkWithDraw();
+      getMyNfts();
     } else {
       router.push('/login');
     }
-    // const docRef = await addDoc(collection(db, "post"), {
-    //   username: session?.user?.username,
-    //   caption: captionRef.current.value,
-    //   profileImg: Ysession.user.image,
-    //   timestamp: serverTimestamp(),
-    // });
   }, [blockchain.smartContract, dispatch]);
+
+  const withdrawNFT = async () => {
+    const openseaData = await axios.get(
+      'https://api.opensea.io/api/v1/assets?owner=' +
+        blockchain.account +
+        '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
+    );
+
+    var assetCount = openseaData.data.assets.length;
+    for (var i = 0; i < assetCount; i++) {
+      const q = query(
+        collection(db, 'NFTs'),
+        where('tokenID', '==', parseInt(openseaData.data.assets[i].token_id))
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doci) => {
+        if (doci.data().value > 0) {
+          const NFT = doc(db, 'NFTs', doci.id);
+          updateDoc(NFT, { pending: doci.data().value, value: 0 });
+        }
+      });
+      getMyNfts();
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray3 overflow-x-hidden">
       <Head>
         <title>META TYCOON</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
@@ -106,26 +131,34 @@ export default function Dashboard() {
           <h1 className="text-white font-angkor text-6xl">
             {nftData[0]?.owner.user.username}
           </h1>
+          <p className="text-white font-angkor text-sm mt-2">
+            {blockchain.account}
+          </p>
           <div className="flex flex-col text-left font-angkor text-white mt-8">
-            <p>Balance: $ {totalValue.toString()}</p>
+            <p>Balance: $ {totalValue}</p>
             <p className="mt-2">Pending Withdrawl: $ {pending}</p>
           </div>
         </div>
         <div className="flex flex-col text-right font-angkor text-white justify-end items-end">
           <p>NEXT WITHDRAWAL DATE</p>
           <p>1 December 2022</p>
-          <button
-            className="bg-gray1 mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   dispatch(connect());
-            // }}
-          >
-            Withdraw
-          </button>
+          {canWithdraw ? (
+            <button
+              className="bg-gray1 mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
+              onClick={() => {
+                withdrawNFT();
+              }}
+            >
+              Withdraw
+            </button>
+          ) : (
+            <button className="bg-gray1 mt-5 px-10 py-3 shadow-md rounded-full">
+              Withdrawals Disabled
+            </button>
+          )}
         </div>
       </div>
-      <div className="flex flex-col mt-3  min-w-screen md:px-36 px-60 pb-10">
+      <div className="flex flex-col mt-3  min-w-screen  min-h-[450px] md:px-36 px-60 pb-10">
         <h1 className="text-black font-angkor text-center text-3xl 2xl:text-4xl">
           My Meta Tycoons
         </h1>

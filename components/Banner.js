@@ -22,7 +22,7 @@ function Banner() {
   const [minMint, setMinMint] = useState(1);
   const [nftData, setNftData] = useState([]);
   const [totalMint, setTotalMint] = useState();
-  //console.log("iswhitelisted " + isWhitelisted);
+
 
   // https://api.opensea.io/api/v1/collection/metatycoon/stats
   const createNFTs = async () => {
@@ -30,7 +30,7 @@ function Banner() {
     var i = 0;
     while (i < nftQTY) {
       //20
-      console.log('The number is ' + i);
+
       const docRef = await addDoc(collection(db, 'NFTs'), {
         tokenID: total + 1,
         value: 0,
@@ -48,9 +48,9 @@ function Banner() {
       .call()
       .then(function (whitelisted) {
         var isWhitelisted = whitelisted;
-        console.log('Check if User is whitelisted');
+   
         if (isWhitelisted === true) {
-          console.log('User is whitelisted');
+       
           blockchain.smartContract.methods
             .isVIP(blockchain.account)
             .call()
@@ -58,8 +58,7 @@ function Banner() {
               if (VIP === true) {
                 var value = '0.000';
                 setMintMsg('Busy');
-                console.log('User is VIP');
-                console.log(value);
+         
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -72,19 +71,18 @@ function Banner() {
                   })
                   .once('error', (err) => {
                     setMintMsg('Mint');
-                    console.log(err);
+                   
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
-                    console.log('Success');
+                
                     setMintMsg('Mint');
                     createNFTs();
                   });
               } else {
                 var value = '0.069';
                 setMintMsg('Busy');
-                console.log('User is whitelisted not VIP');
-                console.log(value);
+          
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -97,11 +95,11 @@ function Banner() {
                   })
                   .once('error', (err) => {
                     setMintMsg('Mint');
-                    console.log(err);
+                  
                   })
                   .then((receipt) => {
                     setMintMsg('Mint');
-                    console.log('Success');
+                 
                     createNFTs();
 
                     setFeedback('Success');
@@ -116,10 +114,10 @@ function Banner() {
               if (onlyWhitelist === true) {
                 setMintMsg("Can't Mint yet");
               } else {
-                console.log('everyone can mint');
+       
                 var value = '0.069';
                 setMintMsg('Busy');
-                console.log(value);
+          
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -133,12 +131,11 @@ function Banner() {
                   .once('error', (err) => {
                     setMintMsg('Mint');
 
-                    console.log(err);
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
                     setMintMsg('Mint');
-                    console.log('Success');
+              
                     createNFTs();
                     //setFeedback("Success");
                   });
@@ -163,9 +160,9 @@ function Banner() {
               .call()
               .then(function (whitelisted) {
                 var isWhitelisted = whitelisted;
-                console.log('Check if User is whitelisted');
+        
                 if (isWhitelisted === true) {
-                  console.log('User is whitelisted');
+            
                   blockchain.smartContract.methods
                     .isVIP(blockchain.account)
                     .call()
@@ -176,7 +173,7 @@ function Banner() {
                           .call()
                           .then(function (mintNUM) {
                             setQtyLeft(mintNUM);
-                            console.log(mintNUM.toString());
+                         
                           });
                       } else {
                         blockchain.smartContract.methods
@@ -184,7 +181,7 @@ function Banner() {
                           .call()
                           .then(function (mintNUM) {
                             setQtyLeft(mintNUM);
-                            console.log(mintNUM.toString());
+                     
                           });
                       }
                     });
@@ -196,7 +193,7 @@ function Banner() {
               .call()
               .then(function (mintNUM) {
                 setQtyLeft(mintNUM);
-                console.log(mintNUM.toString());
+           
               });
           }
         });
@@ -218,7 +215,7 @@ function Banner() {
         });
         return i;
       } catch (err) {
-        console.log(err);
+  
         return undefined;
       }
     }
