@@ -185,7 +185,9 @@ function Banner() {
     async function count(slug) {
       try {
         const url = `https://api.opensea.io/collection/${slug}/stats`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          headers: { Accept: 'application/json' },
+        });
         setTotalMint(response.data.stats.count);
         console.log(response.data.stats.count);
         return response.data.stats.count;
@@ -212,7 +214,7 @@ function Banner() {
       <div className="ml-2 absolute top-1/2 md:top-1/2 w-full text-center">
         {/* <Countdown className="pl-4" /> */}
         <div>
-          <p className="text-white text-xs font-angkor text-center">
+          <p className="text-white md:-mt-12 text-base font-angkor text-center">
             {totalMint} / 999 minted
           </p>
         </div>
