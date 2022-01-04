@@ -2,7 +2,7 @@ import Image from 'next/image';
 import about1 from '../assets/about1.jpg';
 
 import giselle from '../assets/Giselle.jpg';
-import jay from '../assets/Jay.jpg';
+import jay from '../assets/Ricky.jpg';
 import jis from '../assets/Jis.jpg';
 import maxim from '../assets/Maxim.jpg';
 import yun from '../assets/Yun.jpg';
@@ -62,11 +62,10 @@ function Teams() {
                 height={200}
               />
               <div className="image__overlay image__overlay--blur">
-                <p className=" text-xs text-center">Operations</p>
-                <h1 className="text-4xl font-bold text-center">Jay</h1>
+                <p className=" text-xs text-center">Marketing</p>
+                <h1 className="text-4xl font-bold text-center">Ricky</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
-                  Handles the operations for Streetwear Collection and Real
-                  estate management
+                  Head of Marketing (Asia)
                 </p>
               </div>
             </div>
@@ -82,8 +81,7 @@ function Teams() {
                 <p className=" text-xs text-center">Marketing</p>
                 <h1 className="text-4xl font-bold text-center">Giselle</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
-                  Handles the marketing aspect of the entire project, including
-                  streetwear collection
+                  Head of Marketing (Global)
                 </p>
               </div>
             </div>
