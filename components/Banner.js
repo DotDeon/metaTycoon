@@ -30,12 +30,11 @@ function Banner() {
     while (i <= nftQTY) {
       console.log('The number is ' + i);
       const docRef = await addDoc(collection(db, 'NFTs'), {
-        tokenID: totalMint,
+        tokenID: totalMint + 1,
         value: 0,
         pending: 0,
         timestamp: serverTimestamp(),
       });
-      totalMint++;
       i++;
     }
   };
