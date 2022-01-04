@@ -16,23 +16,24 @@ import { valueState } from '../../atoms/sumValueAtom';
 const Collectioncard = ({ id, name, img }) => {
   const [pending, setPending] = useRecoilState(pendingState);
   const [totalValue, setTotalValue] = useRecoilState(valueState);
+  const [vl, setVL] = useState();
 
-  const [nftValue, setValue] = useState(1);
+  const [nftValue, setValue] = useState(0);
 
   useEffect(async () => {
-    const q = query(
-      collection(db, 'NFTs'),
-      where('tokenID', '==', parseInt(id))
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.data().value);
-      setValue(doc.data().value);
-      setTotalValue(totalValue + parseInt(doc.data().value));
-      setPending(pending + parseInt(doc.data().pending));
-      console.log(totalValue);
-      console.log(pending);
-    });
+    if (nftValue == 0) {
+      const q = query(
+        collection(db, 'NFTs'),
+        where('tokenID', '==', parseInt(id))
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data().value);
+        setValue(doc.data().value);
+      });
+    } else {
+      console.log(nftValue);
+    }
   }, [db]);
 
   return (

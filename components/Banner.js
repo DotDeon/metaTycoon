@@ -26,11 +26,13 @@ function Banner() {
 
   // https://api.opensea.io/api/v1/collection/metatycoon/stats
   const createNFTs = async () => {
-    var i = 1;
-    while (i <= nftQTY) {
+    var total = totalMint; //711
+    var i = 0;
+    while (i < nftQTY) {
+      //20
       console.log('The number is ' + i);
       const docRef = await addDoc(collection(db, 'NFTs'), {
-        tokenID: totalMint + 1,
+        tokenID: total + 1,
         value: 0,
         pending: 0,
         timestamp: serverTimestamp(),
@@ -76,6 +78,7 @@ function Banner() {
                     //   setClaimingNFT(false);
                     console.log('Success');
                     setMintMsg('Mint');
+                    createNFTs();
                   });
               } else {
                 var value = '0.069';
@@ -136,6 +139,7 @@ function Banner() {
                     //   setClaimingNFT(false);
                     setMintMsg('Mint');
                     console.log('Success');
+                    createNFTs();
                     //setFeedback("Success");
                   });
               }

@@ -16,6 +16,8 @@ import {
   serverTimestamp,
   query,
   setDoc,
+  getDocs,
+  where,
   doc,
   deleteDoc,
 } from '@firebase/firestore';
@@ -32,13 +34,13 @@ export default function Dashboard() {
   const [nftAddress, setNFTAddress] = useState(
     '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
   );
-  const [pending, setPending] = useRecoilState(pendingState);
-  const [totalValue, setTotalValue] = useRecoilState(valueState);
+  const [pending, setPending] = useState(0);
+  const [totalValue, setTotalValue] = useState(0);
 
   useEffect(() => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-      // console.log(blockchain.account);
+
       const getMyNfts = async () => {
         const openseaData = await axios.get(
           'https://api.opensea.io/api/v1/assets?owner=' +
@@ -47,7 +49,27 @@ export default function Dashboard() {
         );
 
         setNftData(openseaData.data.assets);
-        // console.log(openseaData.data.assets);
+
+        var assetCount = openseaData.data.assets.length;
+        for (var i = 0; i < assetCount; i++) {
+          const q = query(
+            collection(db, 'NFTs'),
+            where(
+              'tokenID',
+              '==',
+              parseInt(openseaData.data.assets[i].token_id)
+            )
+          );
+          const querySnapshot = await getDocs(q);
+          const val = 0;
+          const pending = 0;
+          querySnapshot.forEach((doc) => {
+            val = parseInt(val) + parseInt(doc.data().value);
+            pending = parseInt(pending) + parseInt(doc.data().pending);
+          });
+          setTotalValue(val);
+          setPending(pending);
+        }
 
         if ((openseaData.data.assets.length = 0)) {
           router.push('/login');
@@ -85,7 +107,7 @@ export default function Dashboard() {
             {nftData[0]?.owner.user.username}
           </h1>
           <div className="flex flex-col text-left font-angkor text-white mt-8">
-            <p>Balance: $ {totalValue}</p>
+            <p>Balance: $ {totalValue.toString()}</p>
             <p className="mt-2">Pending Withdrawl: $ {pending}</p>
           </div>
         </div>
