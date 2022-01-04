@@ -33,7 +33,6 @@ export default function Dashboard() {
   useEffect(() => {
     // const createNFTs = async () => {
     //   var i = 692;
-    //   while (i < 697) {
     //     console.log('The number is ' + i);
     //     const docRef = await addDoc(collection(db, 'NFTs'), {
     //       tokenID: i,
@@ -70,6 +69,13 @@ export default function Dashboard() {
     } else {
       router.push('/login');
     }
+
+    // const docRef = await addDoc(collection(db, "post"), {
+    //   username: session?.user?.username,
+    //   caption: captionRef.current.value,
+    //   profileImg: Ysession.user.image,
+    //   timestamp: serverTimestamp(),
+    // });
   }, [blockchain.smartContract, dispatch]);
 
   return (

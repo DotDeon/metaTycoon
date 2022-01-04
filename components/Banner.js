@@ -25,6 +25,20 @@ function Banner() {
   //console.log("iswhitelisted " + isWhitelisted);
 
   // https://api.opensea.io/api/v1/collection/metatycoon/stats
+  const createNFTs = async () => {
+    var i = 1;
+    while (i <= nftQTY) {
+      console.log('The number is ' + i);
+      const docRef = await addDoc(collection(db, 'NFTs'), {
+        tokenID: totalMint,
+        value: 0,
+        pending: 0,
+        timestamp: serverTimestamp(),
+      });
+      totalMint++;
+      i++;
+    }
+  };
 
   const claimNFT = (_amount) => {
     var isWhitelisted;
@@ -86,6 +100,8 @@ function Banner() {
                   .then((receipt) => {
                     setMintMsg('Mint');
                     console.log('Success');
+                    createNFTs();
+
                     setFeedback('Success');
                   });
               }
