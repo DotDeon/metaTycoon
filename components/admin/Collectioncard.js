@@ -40,13 +40,13 @@ const Collectioncard = ({ id, name, value, img }) => {
     () =>
       onSnapshot(
         query(
-          collection(db, 'NFTs'),
+          db.collection(db, 'NFTs'),
           where('id', '==', id)
           // orderBy('timestamp', 'desc')
         ),
         (snapshot) => {
           console.log(id);
-          console.log(snapshot.docs.id);
+          console.log(snapshot.docs);
         }
       ),
     [db]

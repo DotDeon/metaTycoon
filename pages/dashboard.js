@@ -32,11 +32,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     // const createNFTs = async () => {
-    //   var i = 648;
-    //   while (i < 10001) {
+    //   var i = 692;
+    //   while (i < 697) {
     //     console.log('The number is ' + i);
     //     const docRef = await addDoc(collection(db, 'NFTs'), {
-    //       id: i,
+    //       tokenID: i,
     //       value: 0,
     //       pending: 0,
     //       timestamp: serverTimestamp(),
@@ -70,13 +70,6 @@ export default function Dashboard() {
     } else {
       router.push('/login');
     }
-
-    // const docRef = await addDoc(collection(db, "post"), {
-    //   username: session?.user?.username,
-    //   caption: captionRef.current.value,
-    //   profileImg: Ysession.user.image,
-    //   timestamp: serverTimestamp(),
-    // });
   }, [blockchain.smartContract, dispatch]);
 
   return (

@@ -9,6 +9,9 @@ import { connect } from '../src/redux/blockchain/blockchainActions';
 import { fetchData } from '../src/redux/data/dataActions';
 import Slider from 'react-input-slider';
 import axios from 'axios';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
 
 function Banner() {
   const dispatch = useDispatch();
@@ -182,23 +185,27 @@ function Banner() {
   }, [blockchain.smartContract, dispatch]);
 
   useEffect(() => {
-    async function count(slug) {
+    async function count() {
       try {
-        const url = `https://api.opensea.io/collection/${slug}/stats`;
-        const response = await axios.get(url, {
-          headers: { Accept: 'application/json' },
+        const q = query(
+          collection(db, 'NFTs'),
+          orderBy('tokenID', 'desc'),
+          limit(1)
+        );
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          setTotalMint(doc.data().tokenID);
         });
-        setTotalMint(response.data.stats.count);
-        console.log(response.data.stats.count);
-        return response.data.stats.count;
+        return i;
       } catch (err) {
         console.log(err);
         return undefined;
       }
     }
 
-    return count('metatycoon');
-  }, []);
+    return count();
+  }, [db]);
 
   return (
     <div className="relative h-[400px] sm:h-[400px] lg:h-[600px] xl:h-[950px]">
