@@ -91,11 +91,16 @@ export default function Dashboard() {
 
   useEffect(() => {
     // if (blockchain.account !== '' && blockchain.smartContract !== null) {
-    //   dispatch(fetchData(blockchain.account));
+    dispatch(fetchData(blockchain.account));
+
+    if (
+      blockchain.accountblockchain !==
+      '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'
+    ) {
+      router.push('/login');
+    }
+
     checkWithDraw();
-    // } else {
-    //   router.push('/login');
-    // }
   }, [blockchain.smartContract, dispatch]);
 
   return (
