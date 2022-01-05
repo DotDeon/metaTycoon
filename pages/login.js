@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import {
   GlobeAltIcon,
   MenuIcon,
@@ -30,7 +31,6 @@ export default function login() {
       setNFTAddress(blockchain.account);
 
       const getMyNfts = async () => {
-        //TODO: Remove hardcoded Address
         const openseaData = await axios.get(
           "https://api.opensea.io/api/v1/assets?owner=" +
             blockchain.account +
@@ -58,6 +58,15 @@ export default function login() {
 
   return (
     <div className="flex flex-col min-w-screen min-h-screen bg-black justify-center items-center ">
+      <Head>
+        <title>META TYCOON</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Angkor&display=swap"
+          rel="stylesheet"
+        ></link>
+      </Head>
       <div className="flex items-center justify-center flex-col">
         <div
           onClick={() => router.push("/")}
