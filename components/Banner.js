@@ -1,16 +1,16 @@
-import banner from "../assets/banner.png";
-import banner2 from "../assets/banner2.png";
-import Countdown from "./Countdown";
-import Image from "next/image";
-import React, { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/dist/client/router";
-import { useDispatch, useSelector } from "react-redux";
-import { connect } from "../src/redux/blockchain/blockchainActions";
-import { fetchData } from "../src/redux/data/dataActions";
-import Slider from "react-input-slider";
-import axios from "axios";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import banner from '../assets/banner.png';
+import banner2 from '../assets/banner2.png';
+import Countdown from './Countdown';
+import Image from 'next/image';
+import React, { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { connect } from '../src/redux/blockchain/blockchainActions';
+import { fetchData } from '../src/redux/data/dataActions';
+import Slider from 'react-input-slider';
+import axios from 'axios';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import {
   collection,
   getDocs,
@@ -19,33 +19,33 @@ import {
   query,
   addDoc,
   serverTimestamp,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 function Banner() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
-  const [mintMSG, setMintMsg] = useState("Mint");
+  const [mintMSG, setMintMsg] = useState('Mint');
   const [qtyLeft, setQtyLeft] = useState(20);
   const [minMint, setMinMint] = useState(1);
   const [nftData, setNftData] = useState([]);
   const [totalMint, setTotalMint] = useState();
 
-  const CreateNFT = async () => {
+  const CreateNFT = async (token) => {
     const openseaData = await axios.get(
-      "https://api.opensea.io/api/v1/assets?asset_contract_addresses=0x9dc44047750a972dee1b4b7c9bb7474fe922992f&order_direction=desc&offset=0&limit=1"
+      'https://api.opensea.io/api/v1/assets?asset_contract_addresses=0x9dc44047750a972dee1b4b7c9bb7474fe922992f&order_direction=desc&offset=0&limit=1'
     );
 
-    if (totalMint !== openseaData.data.assets[0].token_id) {
-      console.log("Need More Tokens");
-      console.log(totalMint);
+    if (token !== openseaData.data.assets[0].token_id) {
+      console.log('Need More Tokens');
+      console.log(token);
       console.log(openseaData.data.assets[0].token_id);
       var reqTokens =
         parseInt(openseaData.data.assets[0].token_id) - parseInt(totalMint);
-      var startTokens = parseInt(totalMint) + 1;
+      var startTokens = parseInt(token) + 1;
       var i = startTokens;
       while (i <= openseaData.data.assets[0].token_id) {
-        const docRef = await addDoc(collection(db, "NFTs"), {
+        const docRef = await addDoc(collection(db, 'NFTs'), {
           tokenID: i,
           value: 0,
           pending: 0,
@@ -64,7 +64,7 @@ function Banner() {
     while (i < nftQTY) {
       //20
 
-      const docRef = await addDoc(collection(db, "NFTs"), {
+      const docRef = await addDoc(collection(db, 'NFTs'), {
         tokenID: total + 1,
         value: 0,
         pending: 0,
@@ -88,8 +88,8 @@ function Banner() {
             .call()
             .then(function (VIP) {
               if (VIP === true) {
-                var value = "0.000";
-                setMintMsg("Busy");
+                var value = '0.000';
+                setMintMsg('Busy');
 
                 blockchain.smartContract.methods
                   .mint(nftQTY)
@@ -98,21 +98,21 @@ function Banner() {
 
                     value: blockchain.web3.utils.toWei(
                       (value * nftQTY).toString(),
-                      "ether"
+                      'ether'
                     ),
                   })
-                  .once("error", (err) => {
-                    setMintMsg("Mint");
+                  .once('error', (err) => {
+                    setMintMsg('Mint');
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
 
-                    setMintMsg("Mint");
+                    setMintMsg('Mint');
                     createNFTs();
                   });
               } else {
-                var value = "0.069";
-                setMintMsg("Busy");
+                var value = '0.069';
+                setMintMsg('Busy');
 
                 blockchain.smartContract.methods
                   .mint(nftQTY)
@@ -121,18 +121,18 @@ function Banner() {
 
                     value: blockchain.web3.utils.toWei(
                       (value * nftQTY).toString(),
-                      "ether"
+                      'ether'
                     ),
                   })
-                  .once("error", (err) => {
-                    setMintMsg("Mint");
+                  .once('error', (err) => {
+                    setMintMsg('Mint');
                   })
                   .then((receipt) => {
-                    setMintMsg("Mint");
+                    setMintMsg('Mint');
 
                     createNFTs();
 
-                    setFeedback("Success");
+                    setFeedback('Success');
                   });
               }
             });
@@ -144,8 +144,8 @@ function Banner() {
               if (onlyWhitelist === true) {
                 setMintMsg("Can't Mint yet");
               } else {
-                var value = "0.069";
-                setMintMsg("Busy");
+                var value = '0.069';
+                setMintMsg('Busy');
 
                 blockchain.smartContract.methods
                   .mint(nftQTY)
@@ -154,15 +154,15 @@ function Banner() {
 
                     value: blockchain.web3.utils.toWei(
                       (value * nftQTY).toString(),
-                      "ether"
+                      'ether'
                     ),
                   })
-                  .once("error", (err) => {
-                    setMintMsg("Mint");
+                  .once('error', (err) => {
+                    setMintMsg('Mint');
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
-                    setMintMsg("Mint");
+                    setMintMsg('Mint');
 
                     createNFTs();
                     //setFeedback("Success");
@@ -174,7 +174,7 @@ function Banner() {
   };
 
   useEffect(() => {
-    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+    if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
 
       blockchain.smartContract.methods
@@ -227,17 +227,18 @@ function Banner() {
   useEffect(() => {
     async function count() {
       const q = query(
-        collection(db, "NFTs"),
-        orderBy("tokenID", "desc"),
+        collection(db, 'NFTs'),
+        orderBy('tokenID', 'desc'),
         limit(1)
       );
 
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setTotalMint(doc.data().tokenID);
+        CreateNFT(doc.data().tokenID);
       });
     }
-    CreateNFT();
+
     return count();
   }, [db]);
 
@@ -261,7 +262,7 @@ function Banner() {
         </div>
         <div>
           <p className="text-white font-bold text-center md:text-3xl mt-3">
-            {" "}
+            {' '}
             Price: {`${(nftQTY * 0.069).toString().substring(0, 5)}`} ETH
           </p>
         </div>
@@ -271,10 +272,10 @@ function Banner() {
           <Slider
             styles={{
               track: {
-                backgroundColor: "#1d4c74",
+                backgroundColor: '#1d4c74',
               },
               active: {
-                backgroundColor: "#3d707e",
+                backgroundColor: '#3d707e',
               },
             }}
             axis="x"
@@ -283,15 +284,15 @@ function Banner() {
             xmin={minMint}
             x={nftQTY}
             onChange={({ x }) => {
-              if (mintMSG.substr(0, 4) == "Mint") {
+              if (mintMSG.substr(0, 4) == 'Mint') {
                 setNFTQty(x);
-                setMintMsg("Mint" + " " + x);
+                setMintMsg('Mint' + ' ' + x);
               }
             }}
           />
           <p className="ml-4 font-bold text-white">{qtyLeft}</p>
         </div>
-        {blockchain.account === "" || blockchain.smartContract === null ? (
+        {blockchain.account === '' || blockchain.smartContract === null ? (
           <button
             className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
             onClick={(e) => {
