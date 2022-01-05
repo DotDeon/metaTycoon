@@ -11,7 +11,15 @@ import Slider from 'react-input-slider';
 import axios from 'axios';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  orderBy,
+  limit,
+  query,
+  addDoc,
+  serverTimestamp,
+} from 'firebase/firestore';
 
 function Banner() {
   const dispatch = useDispatch();
@@ -23,9 +31,48 @@ function Banner() {
   const [nftData, setNftData] = useState([]);
   const [totalMint, setTotalMint] = useState();
 
+  const CreateNFT = async () => {
+    const openseaData = await axios.get(
+      'https://api.opensea.io/api/v1/assets?asset_contract_addresses=0x9dc44047750a972dee1b4b7c9bb7474fe922992f&order_direction=desc&offset=0&limit=1'
+    );
+
+    //setNftData(openseaData.data.assets);
+
+    var assetCount = openseaData.data.assets.length;
+    if (totalMint !== openseaData.data.assets[0].token_id) {
+      console.log('Need More Tokens');
+      console.log(totalMint);
+      console.log(openseaData.data.assets[0].token_id);
+      var reqTokens =
+        parseInt(openseaData.data.assets[0].token_id) - parseInt(totalMint);
+      var startTokens = parseInt(totalMint) + 1;
+      // console.log(
+      //   'i need ' +
+      //     reqTokens +
+      //     ' new NFTs startring at' +
+      //     startTokens +
+      //     'and my last token should be ' +
+
+      // );
+
+      var i = startTokens;
+      while (i <= openseaData.data.assets[0].token_id) {
+        //20
+
+        const docRef = await addDoc(collection(db, 'NFTs'), {
+          tokenID: i,
+          value: 0,
+          pending: 0,
+          timestamp: serverTimestamp(),
+        });
+        i++;
+      }
+    }
+  };
 
   // https://api.opensea.io/api/v1/collection/metatycoon/stats
   const createNFTs = async () => {
+    return;
     var total = totalMint; //711
     var i = 0;
     while (i < nftQTY) {
@@ -48,9 +95,8 @@ function Banner() {
       .call()
       .then(function (whitelisted) {
         var isWhitelisted = whitelisted;
-   
+
         if (isWhitelisted === true) {
-       
           blockchain.smartContract.methods
             .isVIP(blockchain.account)
             .call()
@@ -58,7 +104,7 @@ function Banner() {
               if (VIP === true) {
                 var value = '0.000';
                 setMintMsg('Busy');
-         
+
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -71,18 +117,17 @@ function Banner() {
                   })
                   .once('error', (err) => {
                     setMintMsg('Mint');
-                   
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
-                
+
                     setMintMsg('Mint');
                     createNFTs();
                   });
               } else {
                 var value = '0.069';
                 setMintMsg('Busy');
-          
+
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -95,11 +140,10 @@ function Banner() {
                   })
                   .once('error', (err) => {
                     setMintMsg('Mint');
-                  
                   })
                   .then((receipt) => {
                     setMintMsg('Mint');
-                 
+
                     createNFTs();
 
                     setFeedback('Success');
@@ -114,10 +158,9 @@ function Banner() {
               if (onlyWhitelist === true) {
                 setMintMsg("Can't Mint yet");
               } else {
-       
                 var value = '0.069';
                 setMintMsg('Busy');
-          
+
                 blockchain.smartContract.methods
                   .mint(nftQTY)
                   .send({
@@ -130,12 +173,11 @@ function Banner() {
                   })
                   .once('error', (err) => {
                     setMintMsg('Mint');
-
                   })
                   .then((receipt) => {
                     //   setClaimingNFT(false);
                     setMintMsg('Mint');
-              
+
                     createNFTs();
                     //setFeedback("Success");
                   });
@@ -160,9 +202,8 @@ function Banner() {
               .call()
               .then(function (whitelisted) {
                 var isWhitelisted = whitelisted;
-        
+
                 if (isWhitelisted === true) {
-            
                   blockchain.smartContract.methods
                     .isVIP(blockchain.account)
                     .call()
@@ -173,7 +214,6 @@ function Banner() {
                           .call()
                           .then(function (mintNUM) {
                             setQtyLeft(mintNUM);
-                         
                           });
                       } else {
                         blockchain.smartContract.methods
@@ -181,7 +221,6 @@ function Banner() {
                           .call()
                           .then(function (mintNUM) {
                             setQtyLeft(mintNUM);
-                     
                           });
                       }
                     });
@@ -193,7 +232,6 @@ function Banner() {
               .call()
               .then(function (mintNUM) {
                 setQtyLeft(mintNUM);
-           
               });
           }
         });
@@ -213,9 +251,9 @@ function Banner() {
         querySnapshot.forEach((doc) => {
           setTotalMint(doc.data().tokenID);
         });
+        CreateNFT();
         return i;
       } catch (err) {
-  
         return undefined;
       }
     }
