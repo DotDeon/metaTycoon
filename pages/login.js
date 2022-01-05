@@ -1,18 +1,18 @@
-import Image from 'next/image';
+import Image from "next/image";
 import {
   GlobeAltIcon,
   MenuIcon,
   UserCircleIcon,
   SearchIcon,
   UsersIcon,
-} from '@heroicons/react/solid';
-import { useState, useEffect } from 'react';
-import { connect } from '../src/redux/blockchain/blockchainActions';
-import logo from '../assets/logo.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../src/redux/data/dataActions';
-import axios from 'axios';
-import { useRouter } from 'next/dist/client/router';
+} from "@heroicons/react/solid";
+import { useState, useEffect } from "react";
+import { connect } from "../src/redux/blockchain/blockchainActions";
+import logo from "../assets/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../src/redux/data/dataActions";
+import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 
 export default function login() {
   const router = useRouter();
@@ -25,30 +25,30 @@ export default function login() {
   // );
 
   useEffect(() => {
-    if (blockchain.account !== '' && blockchain.smartContract !== null) {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
       setNFTAddress(blockchain.account);
 
       const getMyNfts = async () => {
         //TODO: Remove hardcoded Address
         const openseaData = await axios.get(
-          'https://api.opensea.io/api/v1/assets?owner=' +
+          "https://api.opensea.io/api/v1/assets?owner=" +
             blockchain.account +
-            '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
+            "&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50"
         );
 
         setNftData(openseaData.data.assets);
 
         if (openseaData.data.assets.length > 0) {
           if (
-            blockchain.account == '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'
+            blockchain.account === "0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab"
           ) {
-            router.push('/admin');
+            router.push("/admin");
           } else {
-            router.push('/dashboard');
+            router.push("/dashboard");
           }
         } else {
-          console.log('Cant Log In');
+          console.log("Cant Log In");
         }
       };
 
@@ -60,7 +60,7 @@ export default function login() {
     <div className="flex flex-col min-w-screen min-h-screen bg-black justify-center items-center ">
       <div className="flex items-center justify-center flex-col">
         <div
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className="relative flex items-center h-10 cursor-pointer "
         >
           <Image
@@ -84,7 +84,7 @@ export default function login() {
       >
         Connect Wallet
       </button> */}
-      {blockchain.account === '' || blockchain.smartContract === null ? (
+      {blockchain.account === "" || blockchain.smartContract === null ? (
         <button
           className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
           onClick={(e) => {
