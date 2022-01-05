@@ -48,6 +48,7 @@ export default function login() {
             router.push('/dashboard');
           }
         } else {
+          console.log('Cant Log In');
         }
       };
 
@@ -87,7 +88,8 @@ export default function login() {
         <button
           className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
           onClick={(e) => {
-            e.preventDefault();
+            // e.preventDefault();
+
             dispatch(connect());
           }}
         >
