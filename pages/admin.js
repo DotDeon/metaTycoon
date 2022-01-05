@@ -93,12 +93,12 @@ export default function Dashboard() {
     // if (blockchain.account !== '' && blockchain.smartContract !== null) {
     dispatch(fetchData(blockchain.account));
 
-    if (
-      blockchain.accountblockchain !==
-      '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'
-    ) {
-      router.push('/login');
-    }
+    // if (
+    //   blockchain.accountblockchain !==
+    //   '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'
+    // ) {
+    //   router.push('/login');
+    // }
 
     checkWithDraw();
   }, [blockchain.smartContract, dispatch]);
@@ -147,6 +147,13 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="flex flex-col text-right font-angkor text-white justify-end items-end">
+          <button
+            href=""
+            class="bg-gray3 font-bold text-black px-4 py-3 transition duration-300 ease-in-out mt-4 mb-10"
+            onClick={() => router.push('/login')}
+          >
+            Go to Dashboard
+          </button>
           <div className="flex flex-row justify-center items-center">
             <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
               <input
