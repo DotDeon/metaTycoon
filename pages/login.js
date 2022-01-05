@@ -33,7 +33,7 @@ export default function login() {
         //TODO: Remove hardcoded Address
         const openseaData = await axios.get(
           'https://api.opensea.io/api/v1/assets?owner=' +
-            '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d' +
+            blockchain.account +
             '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
         );
 
