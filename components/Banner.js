@@ -255,7 +255,7 @@ function Banner() {
       <div className="ml-2 absolute top-1/2 md:top-1/2 w-full text-center">
         {/* <Countdown className="pl-4" /> */}
         <div>
-          <p className="text-white md:-mt-12 text-base font-mono text-center">
+          <p className="text-white md:-mt-12 text-lg font-mono text-center">
             {totalMint} / 999 minted
           </p>
         </div>
