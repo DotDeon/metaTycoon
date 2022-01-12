@@ -82,13 +82,14 @@ export default function Dashboard() {
   };
   useEffect(() => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
+      //dispatch(connect());
       dispatch(fetchData(blockchain.account));
       checkWithDraw();
       getMyNfts();
     } else {
       router.push('/login');
     }
-  }, [blockchain.smartContract, dispatch]);
+  }, []);
 
   const withdrawNFT = async () => {
     const openseaData = await axios.get(
