@@ -71,7 +71,6 @@ export default function login() {
   const handleSign = async (e) => {
     e.preventDefault();
     dispatch(connect());
-    // const data = new FormData(e.target);
 
     const sig = await signMessage({
       message: msgRef.current.value,
@@ -91,13 +90,17 @@ export default function login() {
         console.log('Is Valid');
         await dispatch(connect());
         dispatch(fetchData(blockchain.address));
-        // getMyNfts(sig.address);
-        getMyNfts('0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab');
+        getMyNfts(sig.address);
+        // getMyNfts(sig.message);
       } else {
         setErr('Invalid Signing Key');
       }
     }
   };
+
+  // curl --request GET \
+  //    --url '' \
+  //    --header 'Accept: application/json'
 
   const getMyNfts = async (nfts) => {
     dispatch(connect());
@@ -112,7 +115,6 @@ export default function login() {
     if (
       nfts.toUpperCase() ===
       '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
-      //""
     ) {
       console.log(118);
       router.push('/admin');
@@ -124,7 +126,6 @@ export default function login() {
         router.push('/dashboard');
       } else {
         setErr('This Wallet owns no Meta-Tycoons');
-
         console.log(wallet);
       }
     }

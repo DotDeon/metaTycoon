@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@craco/craco": "^5.9.0",
+    "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.4",
     "@lifarl/react-scroll-snap-slider": "^2.0.4",
     "@material-ui/icons": "^4.11.2",
@@ -32,6 +33,7 @@
     "react-canvas-draw": "^1.1.1",
     "react-dom": "^17.0.2",
     "react-input-slider": "^6.0.1",
+    "react-moment": "^1.1.1",
     "react-redux": "^7.2.5",
     "react-scripts": "^5.0.0",
     "react-signature-canvas": "^1.0.3",

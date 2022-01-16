@@ -26,18 +26,20 @@ import { db } from '../firebase';
 import { useRecoilState } from 'recoil';
 import { pendingState } from '../atoms/sumPendingAtom';
 import { valueState } from '../atoms/sumValueAtom';
+import Moment from 'react-moment';
 
 export default function Dashboard() {
   const router = useRouter();
   const [nftData, setNftData] = useState([]);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  const [nftAddress, setNFTAddress] = useState(
-    '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
-  );
+  // const [nftAddress, setNFTAddress] = useState(
+  //   '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
+  // );
   const [pending, setPending] = useState(0);
   const [totalValue, setTotalValue] = useState(0);
   const [canWithdraw, setCanWithDraw] = useState(false);
+  const [post, setPost] = useState([]);
 
   const getMyNfts = async () => {
     const val = 0;
@@ -80,9 +82,21 @@ export default function Dashboard() {
       console.log(canWithdraw);
     });
   };
+
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, 'Updates'), orderBy('timestamp', 'desc')),
+        (snapshot) => {
+          setPost(snapshot.docs);
+        }
+      ),
+    [db]
+  );
+
   useEffect(() => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
-      //dispatch(connect());
+      dispatch(connect());
       dispatch(fetchData(blockchain.account));
       checkWithDraw();
       getMyNfts();
@@ -175,6 +189,46 @@ export default function Dashboard() {
             />
           ))}
         </div>
+      </div>
+      <div className="flex flex-col mt-3  bg-black min-w-screen min-h-[450px] md:px-36 px-60 pb-10">
+        <h1 className="text-white font-angkor text-center text-3xl 2xl:text-4xl mt-8 mb-20">
+          Updates
+        </h1>
+
+        {/* ADD */}
+
+        {/* ADD */}
+
+        {/* UPDATE */}
+        {post.map((post) => (
+          <div class="md:flex flex-col bg-white rounded-xl p-8 md:p-0 mt-10">
+            <div className="flex flex-row justify-end items-center  text-right mt-4 px-12">
+              <div className="mr-4">
+                <p class="text-4xl font-medium">{post.data().header}</p>
+                <Moment fromNow className="pr-5 text-sm">
+                  {post.data().timestamp?.toDate()}
+                </Moment>
+                {/* <p>22 January 2022</p> */}
+              </div>
+              <img
+                className="h-20 w-20 rounded-full"
+                src="https://meta-tycoon.club/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F2.312d4388.png&w=256&q=75"
+                alt=""
+                width="384"
+                height="512"
+              />
+            </div>
+
+            <div>
+              <div class="pt-6 md:p-8 text-center space-y-4">
+                <blockquote>
+                  <p class="text-lg font-medium">{post.data().body}</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* UPDATE */}
       </div>
       <Footer />
     </div>
