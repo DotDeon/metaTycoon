@@ -15,6 +15,8 @@ import { fetchData } from '../src/redux/data/dataActions';
 import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import { ethers } from 'ethers';
+import { useRecoilState } from 'recoil';
+import { walletState } from '../atoms/walletState';
 
 const signMessage = async ({ setError, message }) => {
   try {
@@ -69,9 +71,6 @@ export default function login() {
   const [isValid, setIsValid] = useState(false);
 
   const handleSign = async (e) => {
-    e.preventDefault();
-    dispatch(connect());
-
     const sig = await signMessage({
       message: msgRef.current.value,
     });
@@ -88,8 +87,8 @@ export default function login() {
       console.log(isValid2);
       if (isValid2) {
         console.log('Is Valid');
-        await dispatch(connect());
-        dispatch(fetchData(blockchain.address));
+        // await dispatch(connect());
+        // dispatch(fetchData(blockchain.address));
         getMyNfts(sig.address);
         // getMyNfts(sig.message);
       } else {
@@ -97,10 +96,6 @@ export default function login() {
       }
     }
   };
-
-  // curl --request GET \
-  //    --url '' \
-  //    --header 'Accept: application/json'
 
   const getMyNfts = async (nfts) => {
     dispatch(connect());
@@ -132,7 +127,10 @@ export default function login() {
   };
 
   useEffect(() => {
-    console.log(wallet);
+    if (blockchain.account !== '' && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+      handleSign();
+    }
   }, [blockchain.smartContract, dispatch]);
 
   return (
@@ -180,8 +178,8 @@ export default function login() {
             className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
             onClick={(e) => {
               e.preventDefault();
+
               dispatch(connect());
-              handleSign(e);
             }}
             type="submit"
           >

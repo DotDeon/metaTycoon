@@ -3,11 +3,13 @@ import Head from 'next/head';
 import Collectioncard from '../components/admin/Collectioncard';
 import img from '../assets/1.jpg';
 import { useState, useEffect } from 'react';
+import { connect } from '../src/redux/blockchain/blockchainActions';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../src/redux/data/dataActions';
+
 import {
   addDoc,
   collection,
@@ -74,6 +76,11 @@ export default function Dashboard() {
   };
 
   const checkWithDraw = async () => {
+    await dispatch(connect());
+    console.log('Contract ' + blockchain.smartContract);
+    console.log('Wallet ' + blockchain.account);
+    await dispatch(fetchData(blockchain.account));
+
     const q = query(collection(db, 'Admin'), where('adminToken', '==', 1));
     const querySnapshot = await getDocs(q);
 
@@ -96,8 +103,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
-      dispatch(connect());
-      dispatch(fetchData(blockchain.account));
       checkWithDraw();
       getMyNfts();
     } else {
@@ -201,10 +206,13 @@ export default function Dashboard() {
 
         {/* UPDATE */}
         {post.map((post) => (
-          <div class="md:flex flex-col bg-white rounded-xl p-8 md:p-0 mt-10">
+          <div
+            className="md:flex flex-col bg-white rounded-xl p-8 md:p-0 mt-10"
+            key={post.id}
+          >
             <div className="flex flex-row justify-end items-center  text-right mt-4 px-12">
               <div className="mr-4">
-                <p class="text-4xl font-medium">{post.data().header}</p>
+                <p className="text-4xl font-medium">{post.data().header}</p>
                 <Moment fromNow className="pr-5 text-sm">
                   {post.data().timestamp?.toDate()}
                 </Moment>
@@ -220,9 +228,9 @@ export default function Dashboard() {
             </div>
 
             <div>
-              <div class="pt-6 md:p-8 text-center space-y-4">
+              <div className="pt-6 md:p-8 text-center space-y-4">
                 <blockquote>
-                  <p class="text-lg font-medium">{post.data().body}</p>
+                  <p className="text-lg font-medium">{post.data().body}</p>
                 </blockquote>
               </div>
             </div>
