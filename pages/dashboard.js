@@ -102,12 +102,12 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    if (blockchain.account !== '' && blockchain.smartContract !== null) {
-      checkWithDraw();
-      getMyNfts();
-    } else {
-      router.push('/login');
-    }
+    //  if (blockchain.account !== '' && blockchain.smartContract !== null) {
+    checkWithDraw();
+    getMyNfts();
+    //  } else {
+    //   router.push('/login');
+    //  }
   }, []);
 
   const withdrawNFT = async () => {
