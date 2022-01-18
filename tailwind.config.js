@@ -7,6 +7,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       fblue: '#111d46',
+      green: '#00a606',
       fteal: '#3d707e',
       champ: '#ffcfa1',
       black: '#1c1c1c',

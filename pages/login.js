@@ -65,14 +65,15 @@ export default function login() {
   const [wallet, setWallet] = useState();
   const [msg, setMsg] = useState();
   const [err, setErr] = useState('Loading...');
-  const msgRef = useRef('');
+  const [msgRef, setMsgRef] = useState('Welcome to the Meta Tycoon Club');
 
   const [signature, setSignature] = useState();
   const [isValid, setIsValid] = useState(false);
+  const [handlesgn, setHandleSgn] = useState(false);
 
   const handleSign = async (e) => {
     const sig = await signMessage({
-      message: msgRef.current.value,
+      message: msgRef,
     });
     if (sig) {
       await setWallet(sig.address);
@@ -120,16 +121,19 @@ export default function login() {
       console.log('Dash');
       router.push('/dashboard');
       // } else {
-      //   setErr('This Wallet owns no Meta-Tycoons');
-      //   console.log(wallet);
+      // setErr('This Wallet owns no Meta-Tycoons');
+      // console.log(wallet);
       // }
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-      handleSign();
+      if (handlesgn) {
+        handleSign();
+        setHandleSgn(false);
+      }
     }
   }, [blockchain.smartContract, dispatch]);
 
@@ -165,20 +169,20 @@ export default function login() {
         className="m-4 flex flex-col justify-center items-center w-1/4"
         // onSubmit={handleSign}
       >
-        <input
+        {/* <input
           required
           type="text"
           ref={msgRef}
           name="message"
           className="textarea w-full textarea-bordered focus:ring focus:outline-none p-1 text-center rounded-md py-2 text-white bg-gray1 placeholder-white"
           placeholder="Metamask signing key"
-        />
+        /> */}
         {blockchain.account === '' || blockchain.smartContract === null ? (
           <button
             className="text-purple-500 bg-white mt-10 px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl hover:scale-90 transision duration-150"
             onClick={(e) => {
               e.preventDefault();
-
+              setHandleSgn(true);
               dispatch(connect());
             }}
             type="submit"

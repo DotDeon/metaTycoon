@@ -33,6 +33,7 @@ import { valueState } from '../atoms/sumValueAtom';
 import Withdrawtable from '../components/Withdrawtable';
 import adminUpdate1 from '../components/admin/adminUpdate';
 import socialE from '../components/socialE';
+import { ethers } from 'ethers';
 // import about1 from '../assets/1.jpg';
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -58,6 +59,8 @@ export default function Dashboard() {
   const [dateToday, setDateToday] = useState();
   const [post, setPost] = useState([]);
   const [withdraw, setWithdraw] = useState([]);
+  const [msgRef1, setMsgRef1] = useState('Update Withdrawal Status');
+  const [msgRef, setMsgRef] = useState('Update Token Value');
 
   const handleChange = (e) => {
     setDowpdown(e.target.value);
@@ -66,6 +69,28 @@ export default function Dashboard() {
       setTokenSpec(true);
     } else {
       setTokenSpec(false);
+    }
+  };
+
+  const signMessage = async ({ setError, message }) => {
+    try {
+      //console.log({ message });
+      if (!window.ethereum)
+        throw new Error('No crypto wallet found. Please install it.');
+
+      await window.ethereum.send('eth_requestAccounts');
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const signature = await signer.signMessage(message);
+      const address = await signer.getAddress();
+
+      return {
+        message,
+        signature,
+        address,
+      };
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
@@ -104,17 +129,33 @@ export default function Dashboard() {
   );
 
   const updateTokens = async () => {
-    console.lof;
-    if (dropdown == 'silver') {
-      updateSilverMembers();
-    } else if (dropdown == 'gold') {
-      updateGold();
-    } else if (dropdown == 'black') {
-      updateBlackMembers();
-    } else if (dropdown == 'red') {
-      updateRedMembers();
-    } else if (dropdown == 'token') {
-      updateToken();
+    console.log(msgRef);
+    const sig = await signMessage({
+      message: msgRef,
+    });
+    if (sig) {
+      const isValid2 = await verifyMessage({
+        message: sig.message,
+        address: sig.address,
+        signature: sig.signature,
+      });
+      console.log(isValid2);
+      if (isValid2) {
+        if (dropdown == 'silver') {
+          updateSilverMembers();
+        } else if (dropdown == 'gold') {
+          updateGold();
+        } else if (dropdown == 'black') {
+          updateBlackMembers();
+        } else if (dropdown == 'red') {
+          updateRedMembers();
+        } else if (dropdown == 'token') {
+          updateToken();
+        }
+        // });
+      } else {
+        console.log('Invalid Signing Key');
+      }
     }
   };
 
@@ -240,15 +281,31 @@ export default function Dashboard() {
   };
 
   const updateWithDraw = async () => {
-    console.log('hi');
-    const q = query(collection(db, 'Admin'), where('adminToken', '==', 1));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doci) => {
-      const NFT = doc(db, 'Admin', doci.id);
-
-      updateDoc(NFT, { canWithdraw: !doci.data().canWithdraw });
-      setCanWithDraw(!doci.data().canWithdraw);
+    console.log(msgRef1);
+    const sig = await signMessage({
+      message: msgRef1,
     });
+    if (sig) {
+      const isValid2 = await verifyMessage({
+        message: sig.message,
+        address: sig.address,
+        signature: sig.signature,
+      });
+      console.log(isValid2);
+      if (isValid2) {
+        console.log('hi');
+        const q = query(collection(db, 'Admin'), where('adminToken', '==', 1));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doci) => {
+          const NFT = doc(db, 'Admin', doci.id);
+
+          updateDoc(NFT, { canWithdraw: !doci.data().canWithdraw });
+          setCanWithDraw(!doci.data().canWithdraw);
+        });
+      } else {
+        console.log('Invalid Signing Key');
+      }
+    }
   };
 
   const addUpdate = async () => {
@@ -276,13 +333,13 @@ export default function Dashboard() {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
 
-      // if (
-      //   blockchain.account.toUpperCase() !==
-      //   '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
-      //   // ""
-      // ) {
-      //   router.push('/login');
-      // }
+      if (
+        blockchain.account.toUpperCase() !==
+        '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
+        // ""
+      ) {
+        router.push('/login');
+      }
 
       var today = new Date();
       var date2 =
@@ -297,7 +354,7 @@ export default function Dashboard() {
     } else {
       router.push('/login');
     }
-    // getWithdrawls();
+    getWithdrawls();
   }, [blockchain.smartContract, dispatch]);
 
   return (
@@ -426,10 +483,18 @@ export default function Dashboard() {
         <div className="flex flex-col text-right font-angkor text-white justify-end items-end">
           <button
             href=""
-            className="bg-gray3 font-bold text-black px-4 py-3 transition duration-300 ease-in-out mt-4 mb-10 rounded-xl hover:bg-gray1 hover:scale-105"
+            className="bg-gray3 font-bold text-black px-4 py-3 transition duration-300 ease-in-out mt-4 rounded-xl hover:bg-gray1 hover:scale-105"
             onClick={() => router.push('/dashboard')}
           >
             Go to Dashboard
+          </button>
+          <button
+            className=" bg-gray3 font-bold text-black px-4 py-3 transition duration-300 ease-in-out mt-4 mb-10 rounded-xl hover:bg-gray1 hover:scale-105"
+            onClick={() => {
+              router.push('/');
+            }}
+          >
+            Logout
           </button>
           <div className="flex flex-row justify-center items-center bg-black">
             <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">

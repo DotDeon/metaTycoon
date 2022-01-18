@@ -15,6 +15,7 @@ import {
   collection,
   onSnapshot,
   orderBy,
+  disconect,
   serverTimestamp,
   query,
   setDoc,
@@ -29,12 +30,36 @@ import { useRecoilState } from 'recoil';
 import { pendingState } from '../atoms/sumPendingAtom';
 import { valueState } from '../atoms/sumValueAtom';
 import Moment from 'react-moment';
+import { ethers } from 'ethers';
+
+const signMessage = async ({ setError, message }) => {
+  try {
+    //console.log({ message });
+    if (!window.ethereum)
+      throw new Error('No crypto wallet found. Please install it.');
+
+    await window.ethereum.send('eth_requestAccounts');
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const signature = await signer.signMessage(message);
+    const address = await signer.getAddress();
+
+    return {
+      message,
+      signature,
+      address,
+    };
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 
 export default function Dashboard() {
   const router = useRouter();
   const [nftData, setNftData] = useState([]);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
+  const [msgRef1, setMsgRef1] = useState('Confirm Withdrawal');
   // const [nftAddress, setNFTAddress] = useState(
   //   '0x3003f87bfad77e9aeca9f1c72fa5914bf11cb81d'
   // );
@@ -49,6 +74,7 @@ export default function Dashboard() {
     const openseaData = await axios.get(
       'https://api.opensea.io/api/v1/assets?owner=' +
         blockchain.account +
+        // '0x01df0f4fcc595fddab5f084e9a6118d75a894050' +
         '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
     );
 
@@ -70,9 +96,9 @@ export default function Dashboard() {
       });
     }
 
-    // if ((openseaData.data.assets.length = 0)) {
-    //   router.push('/login');
-    // }
+    if ((openseaData.data.assets.length = 0)) {
+      router.push('/login');
+    }
   };
 
   const checkWithDraw = async () => {
@@ -102,35 +128,55 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    //  if (blockchain.account !== '' && blockchain.smartContract !== null) {
-    checkWithDraw();
-    getMyNfts();
-    //  } else {
-    //   router.push('/login');
-    //  }
+    if (blockchain.account !== '' && blockchain.smartContract !== null) {
+      checkWithDraw();
+      getMyNfts();
+    } else {
+      router.push('/login');
+    }
   }, []);
 
   const withdrawNFT = async () => {
-    const openseaData = await axios.get(
-      'https://api.opensea.io/api/v1/assets?owner=' +
-        blockchain.account +
-        '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
-    );
-
-    var assetCount = openseaData.data.assets.length;
-    for (var i = 0; i < assetCount; i++) {
-      const q = query(
-        collection(db, 'NFTs'),
-        where('tokenID', '==', parseInt(openseaData.data.assets[i].token_id))
-      );
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doci) => {
-        if (doci.data().value > 0) {
-          const NFT = doc(db, 'NFTs', doci.id);
-          updateDoc(NFT, { pending: doci.data().value, value: 0 });
-        }
+    console.log(msgRef1);
+    const sig = await signMessage({
+      message: msgRef1,
+    });
+    if (sig) {
+      const isValid2 = await verifyMessage({
+        message: sig.message,
+        address: sig.address,
+        signature: sig.signature,
       });
-      getMyNfts();
+      console.log(isValid2);
+      if (isValid2) {
+        const openseaData = await axios.get(
+          'https://api.opensea.io/api/v1/assets?owner=' +
+            blockchain.account +
+            '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
+        );
+
+        var assetCount = openseaData.data.assets.length;
+        for (var i = 0; i < assetCount; i++) {
+          const q = query(
+            collection(db, 'NFTs'),
+            where(
+              'tokenID',
+              '==',
+              parseInt(openseaData.data.assets[i].token_id)
+            )
+          );
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doci) => {
+            if (doci.data().value > 0) {
+              const NFT = doc(db, 'NFTs', doci.id);
+              updateDoc(NFT, { pending: doci.data().value, value: 0 });
+            }
+          });
+          getMyNfts();
+        }
+      } else {
+        console.log('Invalid Signing Key');
+      }
     }
   };
 
@@ -164,7 +210,7 @@ export default function Dashboard() {
           <p>1 December 2022</p>
           {canWithdraw ? (
             <button
-              className="bg-gray1 mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
+              className="bg-green mt-5 px-10 py-3 shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
               onClick={() => {
                 withdrawNFT();
               }}
@@ -176,6 +222,14 @@ export default function Dashboard() {
               Withdrawals Disabled
             </button>
           )}
+          <button
+            className=" bg-fblue mt-5 px-12 py-4 hover:bg-fteal shadow-md rounded-full hover:shadow-xl hover:scale-90 transision duration-150"
+            onClick={() => {
+              router.push('/');
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
       <div className="flex flex-col mt-3  min-w-screen  min-h-[450px] md:px-36 px-60 pb-10">
