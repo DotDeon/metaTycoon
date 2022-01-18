@@ -427,7 +427,7 @@ export default function Dashboard() {
           <button
             href=""
             className="bg-gray3 font-bold text-black px-4 py-3 transition duration-300 ease-in-out mt-4 mb-10 rounded-xl hover:bg-gray1 hover:scale-105"
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/dashboard')}
           >
             Go to Dashboard
           </button>
