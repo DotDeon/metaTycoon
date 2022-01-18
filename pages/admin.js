@@ -276,13 +276,13 @@ export default function Dashboard() {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
 
-      if (
-        blockchain.account.toUpperCase() !==
-        '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
-        // ""
-      ) {
-        router.push('/login');
-      }
+      // if (
+      //   blockchain.account.toUpperCase() !==
+      //   '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
+      //   // ""
+      // ) {
+      //   router.push('/login');
+      // }
 
       var today = new Date();
       var date2 =

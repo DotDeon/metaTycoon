@@ -70,9 +70,9 @@ export default function Dashboard() {
       });
     }
 
-    if ((openseaData.data.assets.length = 0)) {
-      router.push('/login');
-    }
+    // if ((openseaData.data.assets.length = 0)) {
+    //   router.push('/login');
+    // }
   };
 
   const checkWithDraw = async () => {
