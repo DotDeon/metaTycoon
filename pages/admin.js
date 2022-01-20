@@ -72,6 +72,23 @@ export default function Dashboard() {
     }
   };
 
+  const verifyMessage = async ({ message, address, signature }) => {
+    try {
+      console.log(message);
+      console.log(signature);
+      const signerAddr = await ethers.utils.verifyMessage(message, signature);
+
+      if (signerAddr !== address) {
+        return false;
+      }
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
   const signMessage = async ({ setError, message }) => {
     try {
       //console.log({ message });
@@ -349,12 +366,11 @@ export default function Dashboard() {
         '-' +
         today.getFullYear();
       setDateToday(date2);
-
+      getWithdrawls();
       checkWithDraw();
     } else {
       router.push('/login');
     }
-    getWithdrawls();
   }, [blockchain.smartContract, dispatch]);
 
   return (

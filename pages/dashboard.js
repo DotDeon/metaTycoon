@@ -54,6 +54,23 @@ const signMessage = async ({ setError, message }) => {
   }
 };
 
+const verifyMessage = async ({ message, address, signature }) => {
+  try {
+    console.log(message);
+    console.log(signature);
+    const signerAddr = await ethers.utils.verifyMessage(message, signature);
+
+    if (signerAddr !== address) {
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 export default function Dashboard() {
   const router = useRouter();
   const [nftData, setNftData] = useState([]);
@@ -151,7 +168,9 @@ export default function Dashboard() {
       if (isValid2) {
         const openseaData = await axios.get(
           'https://api.opensea.io/api/v1/assets?owner=' +
-            blockchain.account +
+            // '0x01df0f4fcc595fddab5f084e9a6118d75a894050' +
+            sig.address +
+            // blockchain.account +
             '&asset_contract_addresses=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&order_direction=asc&offset=0&limit=50'
         );
 

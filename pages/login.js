@@ -117,13 +117,13 @@ export default function login() {
     } else {
       console.log(120);
       console.log(openseaData.data.assets.length);
-      // if (openseaData.data.assets.length > 0) {
-      console.log('Dash');
-      router.push('/dashboard');
-      // } else {
-      // setErr('This Wallet owns no Meta-Tycoons');
-      // console.log(wallet);
-      // }
+      if (openseaData.data.assets.length > 0) {
+        console.log('Dash');
+        router.push('/dashboard');
+      } else {
+        setErr('This Wallet owns no Meta-Tycoons');
+        console.log(wallet);
+      }
     }
   };
 
