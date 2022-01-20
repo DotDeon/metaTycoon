@@ -366,7 +366,7 @@ export default function Dashboard() {
         '-' +
         today.getFullYear();
       setDateToday(date2);
-      getWithdrawls();
+      // getWithdrawls();
       checkWithDraw();
     } else {
       router.push('/login');

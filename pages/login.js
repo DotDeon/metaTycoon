@@ -107,12 +107,12 @@ export default function login() {
     );
     console.log(109);
     setNftData(openseaData.data.assets);
-    console.log(111);
+    console.log(nfts);
     if (
       nfts.toUpperCase() ===
       '0xdE59F7B03c99719dC3fbcc61f99980a9f495E6ab'.toUpperCase()
     ) {
-      console.log(118);
+      // console.log(118);
       router.push('/admin');
     } else {
       console.log(120);
