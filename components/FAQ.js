@@ -45,7 +45,7 @@ function FAQ() {
             How much is it to mint my Meta Tycoon NFTs?
           </label>
           <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
-            <p className="p-5">0.079ETH + gas fees</p>
+            <p className="p-5">0.1ETH + gas fees</p>
           </div>
         </div>
         {/* FAQ2 */}
