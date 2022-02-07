@@ -44,10 +44,11 @@ export const connect = () => {
           method: 'net_version',
         });
         //const NetworkData = await SmartContract.networks[networkId];
-        if (networkId == 1) {
+        if (networkId == 4) {
           const SmartContractObj = new web3.eth.Contract(
             SmartContract.abi,
-            '0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F'
+            '0xe7fA7E077f910290CD0f0d08069e9023519243Ff'
+            // '0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F' --Live Contract
           );
           dispatch(
             connectSuccess({

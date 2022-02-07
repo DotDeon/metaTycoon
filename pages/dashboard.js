@@ -154,7 +154,7 @@ export default function Dashboard() {
   }, []);
 
   const withdrawNFT = async () => {
-    console.log(msgRef1);
+    //console.log(msgRef1);
     const sig = await signMessage({
       message: msgRef1,
     });

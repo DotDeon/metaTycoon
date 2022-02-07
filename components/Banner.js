@@ -26,25 +26,26 @@ function Banner() {
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
   const [mintMSG, setMintMsg] = useState('Mint');
-  const [qtyLeft, setQtyLeft] = useState(20);
+  const [qtyLeft, setQtyLeft] = useState(50);
   const [minMint, setMinMint] = useState(1);
   const [nftData, setNftData] = useState([]);
   const [totalMint, setTotalMint] = useState();
 
   const CreateNFT = async (token) => {
     const openseaData = await axios.get(
-      'https://api.opensea.io/api/v1/assets?asset_contract_addresses=0x9dc44047750a972dee1b4b7c9bb7474fe922992f&order_direction=desc&offset=0&limit=1'
+      'https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x9dC44047750a972dEE1B4b7c9Bb7474fE922992F&apikey=J8RU111UEUJNJ1CE6XSG96ZCTD46QVR2XJ'
     );
 
-    if (token !== openseaData.data.assets[0].token_id) {
+    console.log(openseaData.data.result);
+
+    if (token !== openseaData.data.result) {
       console.log('Need More Tokens');
       console.log(token);
-      console.log(openseaData.data.assets[0].token_id);
-      var reqTokens =
-        parseInt(openseaData.data.assets[0].token_id) - parseInt(totalMint);
+      console.log(openseaData.data.result);
+      var reqTokens = parseInt(openseaData.data.result) - parseInt(totalMint);
       var startTokens = parseInt(token) + 1;
       var i = startTokens;
-      while (i <= openseaData.data.assets[0].token_id) {
+      while (i <= openseaData.data.result) {
         const docRef = await addDoc(collection(db, 'NFTs'), {
           tokenID: i,
           value: 0,
