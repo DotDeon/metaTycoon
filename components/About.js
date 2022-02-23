@@ -18,7 +18,7 @@ function About() {
           sale/rent of the real estate sent to you in USDT/ETH!
         </b>
         On top of that, all holders get to enjoy exclusive benefits as a Meta
-        Tycoon Club member! <a href="https://tcwhitepaper.meta-tycoon.club" target="_blank">中文詳情請點入中文白皮書</a>
+        Tycoon Club member! <a href="https://tcwhitepaper.meta-tycoon.club" target="_blank"><b><u>中文詳情請點入中文白皮書</b></u></a>
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
