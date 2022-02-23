@@ -62,10 +62,10 @@ function Teams() {
                 height={200}
               />
               <div className="image__overlay image__overlay--blur">
-                <p className=" text-xs text-center">Marketing</p>
-                <h1 className="text-4xl font-bold text-center">Ricky</h1>
+                <p className=" text-xs text-center">Coordinator</p>
+                <h1 className="text-4xl font-bold text-center">Eva</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
-                  Head of Marketing (Asia)
+                  Chief Coordinator 
                 </p>
               </div>
             </div>
@@ -78,10 +78,10 @@ function Teams() {
                 height={200}
               />
               <div className="image__overlay image__overlay--blur">
-                <p className=" text-xs text-center">Marketing</p>
+                <p className=" text-xs text-center">Consultant</p>
                 <h1 className="text-4xl font-bold text-center">Giselle</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
-                  Head of Marketing (Global)
+                  Chief Consultant
                 </p>
               </div>
             </div>
