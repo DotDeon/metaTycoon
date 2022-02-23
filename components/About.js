@@ -15,10 +15,10 @@ function About() {
         artwork is unique with different traits. <br />
         <b>
           All holders co-own real estate in the Metaverse and have profits from
-          sale/rent of the real estate sent to you in USDT!
+          sale/rent of the real estate sent to you in USDT/ETH!
         </b>
         On top of that, all holders get to enjoy exclusive benefits as a Meta
-        Tycoon Club member!
+        Tycoon Club member! <a href="https://tcwhitepaper.meta-tycoon.club" target="_blank">中文詳情請點入中文白皮書</a>
       </p>
       <div className="flex flex-row justify-evenly">
         <div className="flex relative flex-col py-10 ">
