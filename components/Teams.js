@@ -2,7 +2,7 @@ import Image from 'next/image';
 import about1 from '../assets/about1.jpg';
 
 import giselle from '../assets/Giselle.jpg';
-import jay from '../assets/Jay.png';
+import jay from '../assets/Jay.jpg';
 import jis from '../assets/Jis.jpg';
 import maxim from '../assets/Maxim.jpg';
 import yun from '../assets/Yun.jpg';
@@ -65,7 +65,7 @@ function Teams() {
                 <p className=" text-xs text-center">Coordinator</p>
                 <h1 className="text-4xl font-bold text-center">Eva</h1>
                 <p className=" text-xs px-4 mt-4 text-center">
-                  Chief Coordinator 
+                  Chief Coordinator
                 </p>
               </div>
             </div>
