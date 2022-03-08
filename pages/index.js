@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="bg-black flex flex-col">
       <Head>
-        <title>META TYCOON NFT</title>
+        <title>META TYCOON NFT 元大亨</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
