@@ -21,7 +21,7 @@ function About() {
         Tycoon Club member!{' '}
         <a href="https://tcwhitepaper.meta-tycoon.club" target="_blank">
           <b>
-            <u>中文詳情請點入中文白皮書</u>
+            <u>元大亨NFT中文詳情請點這裡閱讀中文白皮書</u>
           </b>
         </a>
       </p>
