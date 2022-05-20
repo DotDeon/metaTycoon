@@ -112,7 +112,7 @@ function Banner() {
                     createNFTs();
                   });
               } else {
-                var value = '0.1';
+                var value = '0.05';
                 setMintMsg('Busy');
 
                 blockchain.smartContract.methods
@@ -145,7 +145,7 @@ function Banner() {
               if (onlyWhitelist === true) {
                 setMintMsg("Can't Mint yet");
               } else {
-                var value = '0.1';
+                var value = '0.05';
                 setMintMsg('Busy');
 
                 blockchain.smartContract.methods
@@ -264,7 +264,7 @@ function Banner() {
         <div>
           <p className="text-white font-bold text-center md:text-3xl mt-3">
             {' '}
-            Price: {`${(nftQTY * 0.1).toString().substring(0, 5)}`} ETH
+            Price: {`${(nftQTY * 0.5).toString().substring(0, 5)}`} ETH
           </p>
         </div>
         <div className="flex flex-row"></div>
