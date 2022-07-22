@@ -112,7 +112,7 @@ function Banner() {
                     createNFTs();
                   });
               } else {
-                var value = '0.1';
+                var value = '1';
                 setMintMsg('Busy');
 
                 blockchain.smartContract.methods
@@ -258,13 +258,13 @@ function Banner() {
         {/* <Countdown className="pl-4" /> */}
         <div>
           <p className="text-white md:-mt-12 text-lg font-mono text-center">
-            {totalMint} / 5000 minted
+            {totalMint} / MINT CLOSED.
           </p>
         </div>
         <div>
           <p className="text-white font-bold text-center md:text-3xl mt-3">
             {' '}
-            Price: {`${(nftQTY * 0.1).toString().substring(0, 5)}`} ETH
+            Price: {`${(nftQTY * 1).toString().substring(0, 5)}`} ETH
           </p>
         </div>
         <div className="flex flex-row"></div>
