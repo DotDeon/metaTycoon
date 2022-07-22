@@ -26,7 +26,7 @@ function Banner() {
   const blockchain = useSelector((state) => state.blockchain);
   const [nftQTY, setNFTQty] = useState(1);
   const [mintMSG, setMintMsg] = useState('Mint');
-  const [qtyLeft, setQtyLeft] = useState(100);
+  const [qtyLeft, setQtyLeft] = useState(1);
   const [minMint, setMinMint] = useState(1);
   const [nftData, setNftData] = useState([]);
   const [totalMint, setTotalMint] = useState();
