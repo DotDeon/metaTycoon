@@ -1,1 +1,1 @@
-Minting closed
+
