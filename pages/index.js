@@ -5,3 +5,4 @@ export default function Home() {
    
         <title>Minting Closed</title>
 </Head>
+  </div>
